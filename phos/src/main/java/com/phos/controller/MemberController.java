@@ -17,10 +17,11 @@ import com.phos.service.MemberService;
 @RequestMapping("/member/*")
 public class MemberController {
 	
+	private MemberService memberService;
 	
-	@Autowired
-	MemberService memberService;
-	
+	public MemberController(MemberService memberService) {
+		this.memberService = memberService;
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {

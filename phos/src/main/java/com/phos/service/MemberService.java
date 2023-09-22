@@ -8,7 +8,7 @@ import com.phos.entity.Member;
 public interface MemberService {
 
 	
-	public void register(Member vo) throws Exception;
-	public Member login(Member vo) throws Exception;
+	 void register(Member vo) throws Exception;
+	 Member login(Member vo) throws Exception;
 
 }
