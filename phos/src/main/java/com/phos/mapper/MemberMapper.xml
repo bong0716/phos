@@ -8,7 +8,7 @@
 	 </insert>
 	
 	
-	 <select id="login" resultType="kr.bit.entity.Member" parameterType="kr.bit.entity.Member">
+	 <select id="login" resultType="com.phos.entity.Member" parameterType="com.phos.entity.Member">
     		 select * from members where email=#{email} and password=#{password}
  	 </select>
 	  
