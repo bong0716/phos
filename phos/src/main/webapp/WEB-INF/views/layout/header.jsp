@@ -67,14 +67,42 @@
       <li class="nav-item" style="margin-right: 60px;">
         <a class="nav-link" href="#">오시는 길</a>
       </li>
-      <li class="nav-item" style="margin-right: 30px;">
-        <a class="nav-link" href="/phos/member/login">
-           <i class="fas fa-user fa-lg" style="vertical-align: middle;"></i>
-        </a>
-      </li>
+      <c:if test="${empty username}"> 
+	      <li class="nav-item" style="margin-right: 30px;">
+	        <a class="nav-link" href="/phos/member/login">
+	           <i class="fas fa-user fa-lg" style="vertical-align: middle;"></i>
+	        </a>
+	      </li>
+      </c:if>
+      <c:if test="${!empty username}"> 
+		    <li class="nav-item dropdown" style="margin-right: 30px;">
+		   	<a class="nav-link dropdown-toggle" href="#" id="programDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          ${username}님
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="programDropdown">
+	          <a class="dropdown-item" href="/phos/member/logout">로그아웃</a>
+	          <a class="dropdown-item" href="#">마이페이지</a>
+	        </div>
+		   </li>
+	   </c:if>
     </ul>
   </div>
 </nav> 
+
+<c:if test="${!empty message}">
+    <script>
+        var message = "${message}";
+        alert(message);
+        <c:choose>
+            <c:when test="${message == '로그아웃되었습니다.'}">
+                // Do not perform history back for the specific message
+            </c:when>
+            <c:otherwise>
+                history.back();
+            </c:otherwise>
+        </c:choose>
+    </script>
+</c:if>
 
 
  <style>

@@ -10,7 +10,7 @@
 	       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 	       <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/com"/>
 	       <property name="username" value="com"/> 
-	       <property name="password" value="com01"/>    
+	       <property name="password" value="admin123@"/>    
 	    </bean>
 	
 		<bean id="hikariDataSource" class="com.zaxxer.hikari.HikariDataSource" 
