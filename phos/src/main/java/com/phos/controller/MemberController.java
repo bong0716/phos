@@ -25,6 +25,25 @@ public class MemberController {
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}
+	
+	
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String register(Member vo, RedirectAttributes rttr) throws Exception {
+	    // 이메일 중복 확인 로직을 구현합니다.
+	    boolean isEmailDuplicated = memberService.isEmailDuplicated(vo.getEmail());
+
+	    if (isEmailDuplicated) {
+	        // 이메일이 중복되는 경우
+	        rttr.addFlashAttribute("error", "이미 사용 중인 이메일 주소입니다.");
+	        return "redirect:/member/login"; // 중복되면 회원가입 페이지로 다시 리다이렉트
+	    } else {
+	        // 이메일이 중복되지 않는 경우 회원 가입을 처리합니다.
+	        memberService.register(vo);
+	        rttr.addFlashAttribute("message", "회원가입이 완료되었습니다.");
+	        return "redirect:/index";
+	    }
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -38,11 +57,9 @@ public class MemberController {
 		
 		if(mvo != null) { //로그인 성공
 			session.setAttribute("mvo", mvo); // 객체바인딩 -> ${!empty mvo}
-			logger.debug("Login successful. Member: {}", mvo.getUsername());
 		}else if (mvo == null) {
 			rttr.addAttribute("message", "없는 아이디이거나 비밀번호가 틀렸습니다.");
 		}
-		
 		
 		return "redirect:/index";
 
@@ -56,17 +73,5 @@ public class MemberController {
 		
 		return "redirect:/index";
 	}
-	
-	
-	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(Member vo, RedirectAttributes rttr) throws Exception {
-		
-		memberService.register(vo);
-		System.out.print(vo);
-		
-		return "redirect:/member/login";
-	}
-	
 	
 }

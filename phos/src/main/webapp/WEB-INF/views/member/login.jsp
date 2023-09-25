@@ -281,6 +281,38 @@ footer a {
   } */
 
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // 회원가입 버튼 클릭 시 폼 검증을 수행합니다.
+  $('form').submit(function(event) {
+    // 입력 필드 중 하나라도 비어 있다면 경고 메시지를 표시하고 제출을 중단합니다.
+    if ($('input[name="username"]').val() === "" ||
+        $('input[name="email"]').val() === "" ||
+        $('input[name="phone"]').val() === "" ||
+        $('input[name="password"]').val() === "" ||
+        $('input[name="birthdate"]').val() === "") {
+      alert("모든 항목을 입력해주세요."); // 경고 메시지 표시
+      event.preventDefault(); // 제출 중단
+    }
+  });
+});
+
+
+// 페이지가 로드될 때 실행되는 함수
+        window.onload = function() {
+            // 'error' 플래시 속성의 값을 가져옵니다.
+            var errorMessage = '<%= request.getAttribute("error") %>';
+            
+            // 에러 메시지가 존재하고, 값이 'null' 또는 'undefined'가 아닌 경우에만 alert로 표시합니다.
+            if (errorMessage !== null && errorMessage !== undefined && errorMessage !== 'null') {
+                alert(errorMessage);
+                history.back();
+            }
+        };
+
+
+</script>
 
 </head>
 <body>
@@ -309,8 +341,8 @@ footer a {
       <span>or use your email for registration</span>
       <input type="text" placeholder="이름" name="username" />
       <input type="email" placeholder="이메일" name="email" />
-      <input type="password" placeholder="비밀번호" name="password "/>
       <input type="text" placeholder="전화번호" name="phone" />
+      <input type="password" placeholder="비밀번호" name="password"/>
       <input type="text" id="birthdate" placeholder="생년월일 (예: 2000-01-01)" name="birthdate" />
 		<div id="error-message" style="color: red; font-size: 10px;"></div><br>
       <button>회원가입</button>
@@ -348,7 +380,13 @@ footer a {
     </div>
   </div>
 </div>
- 
+
+ <c:if test="${!empty message}">
+    <script>
+        var message = "${message}";
+        alert(message);
+    </script>
+</c:if>
  
    <script>
         const signUpButton = document.getElementById('signUp');
@@ -388,6 +426,7 @@ footer a {
         });
 
     </script>
+    
  
 </body>
 </html>

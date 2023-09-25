@@ -17,17 +17,13 @@ public class HomeController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String home(@SessionAttribute(value = "mvo", required = false) Member mvo,
-			@RequestParam(value = "message", required = false) String message,
-			Model model) {
-		
-		String username = mvo != null ? mvo.getUsername() : "";
-		message = message != null ? message : "";
-		model.addAttribute("username", username);
-		model.addAttribute("message", message);
-		System.out.println(message);
-		
-		return "pages/home";
+	public String home(@SessionAttribute(name = "mvo", required = false) Member mvo,
+            @RequestParam(name = "message", required = false, defaultValue = "") String message,
+            Model model) {
+			model.addAttribute("username", mvo != null ? mvo.getUsername() : "");
+			model.addAttribute("message", message);
+			System.out.println(message);
+			return "pages/home";
 	}
 	
 	@RequestMapping(value = "/facility", method = RequestMethod.GET)

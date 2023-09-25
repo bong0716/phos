@@ -10,5 +10,6 @@ public interface MemberService {
 	
 	 void register(Member vo) throws Exception;
 	 Member login(Member vo) throws Exception;
+	 boolean isEmailDuplicated(String email);
 
 }

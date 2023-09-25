@@ -3,13 +3,20 @@
 <mapper namespace="com.phos.mapper.MemberMapper">
 	
 	 <insert id="insertMember" parameterType="com.phos.entity.Member">
-	     insert into members(username, email, password, phone, birthdate)
-	     values(#{username}, #{email}, #{password}, #{phone}, #{birthdate})
+	     insert into members(username, email, phone, password, birthdate)
+	     values(#{username}, #{email}, #{phone}, #{password}, #{birthdate})
 	 </insert>
 	
 	
 	 <select id="login" resultType="com.phos.entity.Member" parameterType="com.phos.entity.Member">
     		 select * from members where email=#{email} and password=#{password}
  	 </select>
+ 	 
+ 	 <select id="findByEmail" resultType="String" parameterType="String">
+    		 select username from members where email=#{email}
+ 	 </select>
+ 	 
+ 	 
+
 	  
 </mapper>
