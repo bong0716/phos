@@ -97,6 +97,9 @@
             <c:when test="${message == '로그아웃되었습니다.'}">
                 // Do not perform history back for the specific message
             </c:when>
+            <c:when test="${message == '회원가입이 완료되었습니다.'}">
+            // Do not perform history back for the specific message
+       		 </c:when>
             <c:otherwise>
                 history.back();
             </c:otherwise>

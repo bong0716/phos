@@ -22,7 +22,6 @@ public class HomeController {
             Model model) {
 			model.addAttribute("username", mvo != null ? mvo.getUsername() : "");
 			model.addAttribute("message", message);
-			System.out.println(message);
 			return "pages/home";
 	}
 	

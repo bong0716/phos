@@ -16,7 +16,13 @@
     		 select username from members where email=#{email}
  	 </select>
  	 
+ 	 <select id="findByPassword" resultType="String" parameterType="String">
+    		 select password from members where email=#{email}
+ 	 </select>
  	 
+ 	 <select id="findByAll" resultType="com.phos.entity.Member" parameterType="String">
+    		 select * from members where email=#{email}
+ 	 </select>
 
 	  
 </mapper>

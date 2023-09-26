@@ -9,7 +9,8 @@ public interface MemberService {
 
 	
 	 void register(Member vo) throws Exception;
-	 Member login(Member vo) throws Exception;
+	 boolean login(String email, String password) throws Exception;
 	 boolean isEmailDuplicated(String email);
+	 Member findByAll(String email);
 
 }

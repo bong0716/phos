@@ -285,7 +285,7 @@ footer a {
 <script>
 $(document).ready(function() {
   // 회원가입 버튼 클릭 시 폼 검증을 수행합니다.
-  $('form').submit(function(event) {
+  $('registerForm').submit(function(event) {
     // 입력 필드 중 하나라도 비어 있다면 경고 메시지를 표시하고 제출을 중단합니다.
     if ($('input[name="username"]').val() === "" ||
         $('input[name="email"]').val() === "" ||
@@ -297,20 +297,6 @@ $(document).ready(function() {
     }
   });
 });
-
-
-// 페이지가 로드될 때 실행되는 함수
-        window.onload = function() {
-            // 'error' 플래시 속성의 값을 가져옵니다.
-            var errorMessage = '<%= request.getAttribute("error") %>';
-            
-            // 에러 메시지가 존재하고, 값이 'null' 또는 'undefined'가 아닌 경우에만 alert로 표시합니다.
-            if (errorMessage !== null && errorMessage !== undefined && errorMessage !== 'null') {
-                alert(errorMessage);
-                history.back();
-            }
-        };
-
 
 </script>
 
@@ -331,7 +317,7 @@ $(document).ready(function() {
 <h2>로그인/회원가입</h2>
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form action="${cpath}/member/register" method="post" >
+    <form id="registerForm" action="${cpath}/member/register" method="post" >
       <h1>회원가입</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -387,6 +373,7 @@ $(document).ready(function() {
         alert(message);
     </script>
 </c:if>
+
  
    <script>
         const signUpButton = document.getElementById('signUp');
