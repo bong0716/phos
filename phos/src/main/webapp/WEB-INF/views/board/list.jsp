@@ -80,7 +80,7 @@ ol li:before {
  <jsp:include page="../layout/header.jsp"/><br><br><br><br><br><br><br><br>
  
  
- <h2>문의 게시판</h2>
+ <h2>1대1 문의</h2>
 
 <div class="container">
   <div class="row">
@@ -91,19 +91,25 @@ ol li:before {
           <tr>
             <th>번호</th>
             <th>제목</th>
-            <th>작성자</th>
             <th>작성일</th>
-            <th>조회수</th>
+            <th>답변상태</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Argentina</td>
             <td>Spanish (official), English, Italian, German, French</td>
-            <td>41,803,125</td>
-            <td>31.3</td>
             <td>2,780,387</td>
+            <td>미완료</td>
           </tr>
+           <%-- <c:forEach var="vo" items="${list}">
+                    <tr>
+	                   <td>${vo.idx}</td>
+	                   <td><a href="${vo.idx}">${vo.title}</a></td>
+	                   <td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.indate}"/></td>  
+	                   <td>${vo.replyStatus}</td>                  
+                    </tr>                    
+          </c:forEach> --%>
         </tbody>
       </table>
       <button class="btn btn-primary" id="showFormButton">문의하기</button>
@@ -114,10 +120,6 @@ ol li:before {
 <div class="container" id="registrationForm" style="display: none;">
  <hr style="border: 2px solid black;">
   <form>
-    <div class="form-group">
-      <label for="name">이름</label>
-      <input type="text" class="form-control" id="name">
-    </div><br>
     <div class="form-group">
       <label for="title">제목</label>
       <input type="text" class="form-control" id="title">

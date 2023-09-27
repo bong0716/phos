@@ -61,7 +61,7 @@
           문의
         </a>
          <div class="dropdown-menu" aria-labelledby="Dropdown">
-          <a class="dropdown-item" href="/phos/board">게시판</a>
+          <a class="dropdown-item" href="/phos/board/list">게시판</a>
         </div>
       </li>
       <li class="nav-item" style="margin-right: 60px;">

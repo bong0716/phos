@@ -12,7 +12,8 @@ CREATE TABLE members (
 INSERT INTO members (username, email, phone, password, birthdate) 
 VALUES ('홍길동', '1234@naver.com', '01011112222', '1234', '2001-02-02');
 
-
+INSERT INTO members (username, email, phone, password, birthdate) 
+VALUES ('갑을병', '4321@naver.com', '01011112222', '1234', '2001-02-02');
 
 
 select * from members

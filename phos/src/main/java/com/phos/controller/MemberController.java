@@ -59,7 +59,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Member vo, HttpSession session, RedirectAttributes rttr, Model model) throws Exception {
+	public String login(Member vo, HttpSession session, Model model) throws Exception {
 	    
 		Boolean check = memberService.login(vo.getEmail(), vo.getPassword());
 	    if (check) { 
