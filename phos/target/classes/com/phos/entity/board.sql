@@ -9,17 +9,19 @@ CREATE TABLE board (
   board_re_lev INT,
   board_re_seq INT,
   board_count INT,
-  board_date DATE,
-  board_replyStatus BOOLEAN DEFAULT FALSE, -- 기본값을 false로 설정
+  board_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  board_replyStatus BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (board_num),
-  FOREIGN KEY (board_user_email) REFERENCES members(email) ON DELETE CASCADE -- 외래 키 제약 조건 추가
+  FOREIGN KEY (board_user_email) REFERENCES members(email) ON DELETE CASCADE 
 );
 
-INSERT INTO board (board_user_email, board_subject, board_content, board_re_ref, board_re_lev, board_re_seq, board_count, board_date, board_replyStatus)
-VALUES ('1234@naver.com', 'Subject 2', 'Content 1', 0, 0, 0, 0, '2023-09-27', 1);
+INSERT INTO board (board_user_email, board_subject, board_content, board_re_ref, board_re_lev, board_re_seq, board_count, board_replyStatus)
+VALUES ('1234@naver.com', 'Subject 2', 'Content 1', 0, 0, 0, 0, 0);
 
-INSERT INTO board (board_user_email, board_subject, board_content, board_re_ref, board_re_lev, board_re_seq, board_count, board_date, board_replyStatus)
-VALUES ('4321@naver.com', 'Subject 2', 'Content 1', 0, 0, 0, 0, '2023-09-27', 1);
+INSERT INTO board (board_user_email, board_subject, board_content, board_re_ref, board_re_lev, board_re_seq, board_count, board_replyStatus)
+VALUES ('1234@naver.com', 'Subject 2', 'Content 1', 0, 0, 0, 0, 1);
+
+select * from board where board_user_email= '1234@naver.com'
 
 select * from board 
 delete from board

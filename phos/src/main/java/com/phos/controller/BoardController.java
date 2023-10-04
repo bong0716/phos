@@ -45,7 +45,13 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	public String list() {
+		
+		
+		
+		return "redirect:/board/list";
+	}
 	
 	
 	

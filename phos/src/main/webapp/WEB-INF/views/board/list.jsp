@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>포스 게시판</title>
+<title>포스 게시판 - 1:1 문의</title>
 
 <style>
 
@@ -25,6 +29,14 @@ table caption {
 table.dataTable th,
 table.dataTable td {
   white-space: nowrap;
+}
+
+table th {
+    text-align: center;
+}
+
+table td {
+    text-align: center;
 }
 
 .p {
@@ -69,10 +81,6 @@ ol li:before {
 }
 
 
-
-}
-
-
 </style>
 </head>
 <body>
@@ -80,7 +88,7 @@ ol li:before {
  <jsp:include page="../layout/header.jsp"/><br><br><br><br><br><br><br><br>
  
  
- <h2>1대1 문의</h2>
+ <h2>1:1 문의</h2>
 
 <div class="container">
   <div class="row">
@@ -89,27 +97,26 @@ ol li:before {
         <caption class="text-center">자세한 문의는 전화를 추천드립니다. 📞 <span style="color: blue;">010-0000-0000</span> </caption>
         <thead>
           <tr>
-            <th>번호</th>
             <th>제목</th>
             <th>작성일</th>
             <th>답변상태</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Argentina</td>
-            <td>Spanish (official), English, Italian, German, French</td>
-            <td>2,780,387</td>
-            <td>미완료</td>
-          </tr>
-           <%-- <c:forEach var="vo" items="${list}">
+        <c:if test="${empty boardList}">
+            <tr>
+                <td colspan="4" style="text-align: center;">등록된 1:1 문의가 없습니다.</td>
+            </tr>
+        </c:if>
+         <c:if test="${!empty boardList}">
+           <c:forEach var="boardList" items="${boardList}">
                     <tr>
-	                   <td>${vo.idx}</td>
-	                   <td><a href="${vo.idx}">${vo.title}</a></td>
-	                   <td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.indate}"/></td>  
-	                   <td>${vo.replyStatus}</td>                  
+	                   <td><a href="${boardList.board_subject}" style="color: black;">${boardList.board_subject}</a></td>
+	                   <td style="width: 20%;"><fmt:formatDate value="${boardList.board_date}" pattern="yyyy-MM-dd HH:mm"/></td>
+                       <td style="width: 20%;">${board.board_replyStatus ? '답변완료' : '답변대기'}</td>            
                     </tr>                    
-          </c:forEach> --%>
+            </c:forEach> 
+          </c:if>
         </tbody>
       </table>
       <button class="btn btn-primary" id="showFormButton">문의하기</button>
@@ -119,39 +126,20 @@ ol li:before {
 <br>
 <div class="container" id="registrationForm" style="display: none;">
  <hr style="border: 2px solid black;">
-  <form>
+  <form id="BoardForm" action="${cpath}/board/list" method="post">
     <div class="form-group">
       <label for="title">제목</label>
-      <input type="text" class="form-control" id="title">
+      <input type="text" class="form-control" name="title">
     </div><br>
     <div class="form-group">
       <label for="content">문의내용</label>
-      <textarea class="form-control" id="content" rows="4"></textarea>
+      <textarea class="form-control" name="content" rows="4"></textarea>
     </div><br>
     <button type="submit" class="btn btn-primary">등록</button>
   </form>
 </div>
 
 
-<br><br> 
- <ol>
-  <li>First, you put 
-  	<code><strong>counter-reset: li</strong></code> on your <code><strong>ol</strong></code>. This will initiate a counter.</li>
-  <li>Second, remove the default list styles on your list by giving the 
-  	<code><strong>list-style: none</strong></code> property to your<code> <strong>li</strong></code> element.</li>
-  <li>You can then create a 
-  	<code><strong>:before</strong></code> pseudo element for your <code><strong>li</strong></code>. This will be where the numbers now live.</li>
-  <li>To use the counter you created earlier as your content, you will have to declare 
-  	<code><strong>content:counter(li)</strong></code> inside your <code><strong>li:before</strong></code> element</li>
-  <li>And, finally, increment the counter by giving your 
-  	<code><strong>li:before</strong></code> this propery: <code><strong>counter-increment:li</strong></code></li>
-  <li>Remember, you can style your list as you would any other pseudo-element! See the code for an example.</li>
-<ol>
-  
-  <p>This was adapted from 
-  	<a href="http://www.456bereastreet.com/archive/201105/styling_ordered_list_numbers/">456bereastreet</a>.
- 
- 
  
  <script>
 
