@@ -1,13 +1,14 @@
 package com.phos.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.validation.BindException;
 
 import com.phos.entity.Member;
 
 
 public interface MemberMapper {
 	// 고객등록 메서드
-	  public void insertMember(Member vo) throws Exception;
+	  public void insertMember(Member vo) throws BindException;
 	  public Member login(@Param("email") String email, @Param("password") String password) throws Exception;
 	  public String findByEmail(String email);
 	  public String findByPassword(String email);

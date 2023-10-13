@@ -1,6 +1,7 @@
 package com.phos.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindException;
 
 import com.phos.entity.Member;
 
@@ -8,7 +9,7 @@ import com.phos.entity.Member;
 public interface MemberService {
 
 	
-	 void register(Member vo) throws Exception;
+	 void register(Member vo) throws BindException;
 	 boolean login(String email, String password) throws Exception;
 	 boolean isEmailDuplicated(String email);
 	 Member findByAll(String email);

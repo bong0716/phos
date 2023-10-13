@@ -2,6 +2,7 @@ package com.phos.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindException;
 
 import com.phos.entity.Member;
 import com.phos.mapper.MemberMapper;
@@ -24,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 		
 	
 		@Override
-	    public void register(Member vo) throws Exception {
+	    public void register(Member vo) throws BindException {
 			 memberMapper.insertMember(vo);
 			  
 		}
