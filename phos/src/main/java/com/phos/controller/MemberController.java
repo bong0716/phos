@@ -36,7 +36,7 @@ import validator.memberValidator;
 public class MemberController {
 	
 	private final MessageSource messageSource;
-	private MemberService memberService;
+	private final MemberService memberService;
 	private final memberValidator memberValidator;
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	WebSecurityConfig webSecurityConfig = new WebSecurityConfig();
@@ -54,24 +54,9 @@ public class MemberController {
 	        BindingResult bindingResult,
 	        Locale locale,
 	        Model model) throws BindException {
-	   
-	    /*boolean isEmailDuplicated = memberService.isEmailDuplicated(vo.getEmail());
-
-	    if (isEmailDuplicated) {
-	    	model.addAttribute("message", "이미 사용 중인 이메일 주소입니다.");
-	        return "redirect:/member/login"; 
-	    } else {
-		
-		
-			String encodedPassword = webSecurityConfig.getPasswordEncoder().encode(vo.getPassword());
-			vo.setPassword(encodedPassword);
-	        memberService.register(vo);
-	        model.addAttribute("message", "회원가입이 완료되었습니다.");
-	        return "redirect:/member/login";
-			} */
 		
 		if(bindingResult.hasErrors()) {
-			throw new BindExceptionWithViewName(bindingResult, "member/register", messageSource, locale);
+			throw new BindExceptionWithViewName(bindingResult, "member/login", messageSource, locale);
 		}
 		
 		String encodedPassword = webSecurityConfig.getPasswordEncoder().encode(member.getPassword());
@@ -82,21 +67,20 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login( @RequestParam(name = "message", required = false, defaultValue = "") String message,
+	public String login( 
+			@RequestParam(name = "message", required = false, defaultValue = "") String message,
 			Model model) {
 		
 		model.addAttribute("message", message);
-		
 		return "member/login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Member vo, HttpSession session, Model model) throws Exception {
-	    
-		Boolean check = memberService.login(vo.getEmail(), vo.getPassword());
-	    if (check) { 
-	    	Member mvo = memberService.findByAll(vo.getEmail());
-	        session.setAttribute("mvo", mvo);
+
+		Member member = memberService.login(vo.getEmail(), vo.getPassword());
+	    if (member != null) { 
+	        session.setAttribute("mvo", member);
 	        return "redirect:/index";
 	    } else {
 	        model.addAttribute("message", "없는 아이디이거나 비밀번호가 틀렸습니다.");
@@ -108,9 +92,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, RedirectAttributes rttr) {
 		session.invalidate(); 
-		
 		rttr.addAttribute("message", "로그아웃되었습니다.");
-		
 		return "redirect:/index";
 	}
 	

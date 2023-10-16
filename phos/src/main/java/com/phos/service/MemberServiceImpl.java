@@ -31,11 +31,16 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		@Override
-		public boolean login(String email, String password) throws Exception {
+		public Member login(String email, String password) throws Exception {
 			String encodedPassword = memberMapper.findByPassword(email);
 			boolean check = webSecurityConfig.getPasswordEncoder().matches(password, encodedPassword);
-			
-			return check;
+			Member member;
+			if(check)
+				member = memberMapper.login(email, encodedPassword);
+			else
+				member = null;
+			 
+			return member;
 		}
 
 

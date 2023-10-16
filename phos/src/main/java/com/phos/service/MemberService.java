@@ -10,7 +10,7 @@ public interface MemberService {
 
 	
 	 void register(Member vo) throws BindException;
-	 boolean login(String email, String password) throws Exception;
+	 Member login(String email, String password) throws Exception;
 	 boolean isEmailDuplicated(String email);
 	 Member findByAll(String email);
 

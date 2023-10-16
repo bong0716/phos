@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="${cpath}/resources/css/style.css"> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
  <%@ include file="./include/signUpAndInFormCSS.jsp" %>
-<title>로그인</title>
+<title>로그인/회원가입</title>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<!-- <script>
 $(document).ready(function() {
   // 회원가입 버튼 클릭 시 폼 검증을 수행합니다.
   $('registerForm').submit(function(event) {
@@ -28,7 +28,8 @@ $(document).ready(function() {
   });
 });
 
-</script>
+</script> -->
+
 
 </head>
 <body>
@@ -46,6 +47,7 @@ $(document).ready(function() {
   
 <h2>로그인/회원가입</h2>
 <div class="container" id="container">
+  <!-- ***************회원가입************** -->
   <div class="form-container sign-up-container">
     <form id="registerForm" action="${cpath}/member/register" method="post" >
       <h1>회원가입</h1>
@@ -55,17 +57,44 @@ $(document).ready(function() {
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <span>or use your email for registration</span>
-      <input type="text" placeholder="이름" name="username" />
-      <input type="email" placeholder="이메일" name="email" />
-      <input type="text" placeholder="전화번호" name="phone" />
-      <input type="password" placeholder="비밀번호" name="password"/>
-      <input type="text" id="birthdate" placeholder="생년월일 (예: 2000-01-01)" name="birthdate" />
-		<div id="error-message" style="color: red; font-size: 10px;"></div><br>
+      
+      <c:set var="username" value="${errors.getFieldValue('username')}" />
+      <input type="text" placeholder="이름" name="username" value="${username}" />
+     	 <font class="before:content-['이름']" color="red" size="2px">
+              <c:if test="${errors.hasFieldErrors('username')}">* ${errors.getMessage('username')}</c:if>
+         </font>
+      
+       <c:choose>
+            <c:when test="${!errors.hasFieldErrors('email')}">
+                <c:set var="email" value="${errors.getFieldValue('email')}" />
+            </c:when>
+            <c:otherwise><c:remove var="value" /></c:otherwise>
+      </c:choose>
+      <input type="email" placeholder="이메일" name="email" value="${email}"/>
+      	<font class="before:content-['이메일']" color="red" size="2px">
+              <c:if test="${errors.hasFieldErrors('email')}">* ${errors.getMessage('email')}</c:if>
+        </font>
+      
+      <c:set var="phone" value="${errors.getFieldValue('phone')}" />	
+      <input type="text" placeholder="전화번호" name="phone" value="${phone}"/>
+        <font class="before:content-['전화번호']" color="red" size="2px">
+              <c:if test="${errors.hasFieldErrors('phone')}">* ${errors.getMessage('phone')}</c:if>
+        </font>
+      
+      <c:set var="password" value="${errors.getFieldValue('password')}" />
+      <input type="password" placeholder="비밀번호" name="password" value="${password}"/>
+       <font class="before:content-['비밀번호']" color="red" size="2px">
+            <c:if test="${errors.hasFieldErrors('password')}">* ${errors.getMessage('password')}</c:if>
+       </font>
+      
+      <c:set var="birthdate" value="${errors.getFieldValue('birthdate')}" /> 
+      <input type="text" id="birthdate" placeholder="생년월일 (예: 2000-01-01)" name="birthdate" value="${birthdate}"/>
+		<div id="error-message" style="color: red; font-size: 12px;"></div>
       <button>회원가입</button>
     </form>
   </div>
   
-  
+  <!-- ***************로그인************** -->
   <div class="form-container sign-in-container">
     <form action="${cpath}/member/login" method="post" >
       <h1>로그인</h1>
@@ -109,7 +138,12 @@ $(document).ready(function() {
         const signUpButton = document.getElementById('signUp');
         const signInButton = document.getElementById('signIn');
         const container = document.getElementById('container');
+		
+        if (window.location.href.includes("/member/register")) {
+            container.classList.add("right-panel-active");
+        }
 
+        
         signUpButton.addEventListener('click', () => {
             container.classList.add("right-panel-active");
         });
@@ -133,7 +167,7 @@ $(document).ready(function() {
           var inputValue = birthdateInput.value;
 
           if (!isValidDate(inputValue)) {
-            errorMessage.textContent = '올바른 날짜 형식을 입력하세요 (예: 2000-01-01)';
+            errorMessage.textContent = '*올바른 날짜 형식을 입력하세요 (예: 2000-01-01)';
             birthdateInput.value = '';
             birthdateInput.focus();
           } else {

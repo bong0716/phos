@@ -76,8 +76,9 @@ input {
   position: relative;
   overflow: hidden;
   width: 768px;
+  height: 800px;
   max-width: 100%;
-  min-height: 580px;
+  min-height: 1000px;
 }
 .form-container {
   position: absolute;

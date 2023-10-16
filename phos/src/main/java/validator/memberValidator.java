@@ -25,12 +25,8 @@ public class memberValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		Member member = (Member) target;
 		
-		if(member.getPassword() == null || member.getPassword().length() < 8  || member.getPassword().length() > 20) {
-			errors.rejectValue("password", "range", new Object[] {8L, 20L}, null);
-		}
-		
 		if(memberService.isEmailDuplicated(member.getEmail())) {
-			errors.rejectValue("email", "duplicate", new Object[] {}, null);
+			errors.rejectValue("email", "duplicate", new Object[] {member.getEmail()}, null);
 		}
 		
 	}

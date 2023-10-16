@@ -17,9 +17,11 @@ public class HomeController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String home(@SessionAttribute(name = "mvo", required = false) Member mvo,
+	public String home(
+			@SessionAttribute(name = "mvo", required = false) Member mvo,
             @RequestParam(name = "message", required = false, defaultValue = "") String message,
             Model model) {
+			
 			model.addAttribute("username", mvo != null ? mvo.getUsername() : "");
 			model.addAttribute("message", message);
 			return "pages/home";

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.phos.config.BindExceptionWithViewName;
 
-
 @ControllerAdvice
 public class ExceptionHandlingController {
 	@ExceptionHandler(BindExceptionWithViewName.class)

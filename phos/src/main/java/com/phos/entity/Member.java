@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
@@ -29,7 +30,7 @@ public class Member {
     @Range(min = 8, max = 20)
     private String password;
     
-    @NotBlank
+    @NotNull
     private Date birthdate;
     private Timestamp registrationDate;
 }
