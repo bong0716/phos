@@ -2,6 +2,7 @@ package com.phos.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,7 @@ public class HomeController {
 	
 	private MemberService memberService;
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@GetMapping("/index")
 	public String home(
 			@SessionAttribute(name = "mvo", required = false) Member mvo,
             @RequestParam(name = "message", required = false, defaultValue = "") String message,
@@ -27,7 +28,7 @@ public class HomeController {
 			return "pages/home";
 	}
 	
-	@RequestMapping(value = "/facility", method = RequestMethod.GET)
+	@GetMapping("/facility")
 	public String facility() {
 		
 		return "pages/facility";

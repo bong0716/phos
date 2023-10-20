@@ -6,6 +6,12 @@
 	 	select * from board where board_user_email=#{email}
 	 </select>
 	 
-
+     <select id="getDetailByBoardNum" resultType="com.phos.entity.Board" parameterType="Integer">
+     	select * from board where board_num=#{boardNum}
+	 </select>
 	  
+	 <insert id="">
+		insert into board(board_user_email, board_subject, board_content)
+		values(#{email}, #{subject}, #{content})
+	 </insert>
 </mapper>

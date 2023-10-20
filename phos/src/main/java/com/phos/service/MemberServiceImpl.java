@@ -6,7 +6,7 @@ import org.springframework.validation.BindException;
 
 import com.phos.entity.Member;
 import com.phos.mapper.MemberMapper;
-import com.phos.security.WebSecurityConfig;
+import com.phos.config.WebSecurityConfig;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -26,7 +26,9 @@ public class MemberServiceImpl implements MemberService {
 	
 		@Override
 	    public void register(Member vo) throws BindException {
-			 memberMapper.insertMember(vo);
+			String encodedPassword = webSecurityConfig.getPasswordEncoder().encode(vo.getPassword());
+			vo.setPassword(encodedPassword);
+			memberMapper.insertMember(vo);
 			  
 		}
 
@@ -47,7 +49,6 @@ public class MemberServiceImpl implements MemberService {
 		@Override
 		public Member findByAll(String email) {
 			Member mvo = memberMapper.findByAll(email);
-			
 			return mvo;
 		}
 }

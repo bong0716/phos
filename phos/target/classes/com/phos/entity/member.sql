@@ -8,6 +8,10 @@ CREATE TABLE members (
   registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE members
+modify COLUMN role ENUM('ROLE_USER', 'ROLE_ADMIN') DEFAULT 'ROLE_USER';
+
+update members set role="ROLE_USER";
 
 INSERT INTO members (username, email, phone, password, birthdate) 
 VALUES ('홍길동', '1234@naver.com', '01011112222', '1234', '2001-02-02');

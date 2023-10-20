@@ -1,12 +1,13 @@
 package com.phos.entity;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import lombok.Data;
@@ -27,11 +28,13 @@ public class Member {
     private String phone;
     
     @NotBlank
-    @Range(min = 8, max = 20)
+    @Length(min = 8, max = 20)
     private String password;
     
     @NotNull
     private Date birthdate;
     private Timestamp registrationDate;
+    
+    private Role role;
 }
 

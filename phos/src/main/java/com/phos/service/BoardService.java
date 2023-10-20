@@ -10,4 +10,5 @@ import com.phos.entity.Board;
 public interface BoardService {
 		
 	List<Board> getList(String email);
+	Board getDetail(int boardNum);
 }

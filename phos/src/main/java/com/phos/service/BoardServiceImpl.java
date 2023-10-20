@@ -23,9 +23,16 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public List<Board> getList(String email) {
-		
 		List<Board> list = boardMapper.findAllByUserEmail(email);
 		return list;
 	}
+
+	@Override
+	public Board getDetail(int boardNum) {
+		Board detail = boardMapper.getDetailByBoardNum(boardNum);
+		return detail;
+	}
+	
+	
 
 }

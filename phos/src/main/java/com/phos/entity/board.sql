@@ -5,18 +5,20 @@ CREATE TABLE board (
   board_user_email VARCHAR(50),
   board_subject VARCHAR(100),
   board_content VARCHAR(2000),
-  board_re_ref INT,
-  board_re_lev INT,
-  board_re_seq INT,
-  board_count INT,
+  board_re_ref INT DEFAULT 0,
+  board_re_lev INT DEFAULT 0,
+  board_re_seq INT DEFAULT 0,
+  board_count INT DEFAULT 0,
   board_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   board_replyStatus BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (board_num),
   FOREIGN KEY (board_user_email) REFERENCES members(email) ON DELETE CASCADE 
 );
 
-INSERT INTO board (board_user_email, board_subject, board_content, board_re_ref, board_re_lev, board_re_seq, board_count, board_replyStatus)
-VALUES ('1234@naver.com', 'Subject 2', 'Content 1', 0, 0, 0, 0, 0);
+
+
+INSERT INTO board (board_user_email, board_subject, board_content)
+VALUES ('1234@naver.com', 'Subject 2', 'Content 1');
 
 INSERT INTO board (board_user_email, board_subject, board_content, board_re_ref, board_re_lev, board_re_seq, board_count, board_replyStatus)
 VALUES ('1234@naver.com', 'Subject 2', 'Content 1', 0, 0, 0, 0, 1);

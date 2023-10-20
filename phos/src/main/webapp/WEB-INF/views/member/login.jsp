@@ -12,24 +12,6 @@
 <title>로그인/회원가입</title>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <script>
-$(document).ready(function() {
-  // 회원가입 버튼 클릭 시 폼 검증을 수행합니다.
-  $('registerForm').submit(function(event) {
-    // 입력 필드 중 하나라도 비어 있다면 경고 메시지를 표시하고 제출을 중단합니다.
-    if ($('input[name="username"]').val() === "" ||
-        $('input[name="email"]').val() === "" ||
-        $('input[name="phone"]').val() === "" ||
-        $('input[name="password"]').val() === "" ||
-        $('input[name="birthdate"]').val() === "") {
-      alert("모든 항목을 입력해주세요."); // 경고 메시지 표시
-      event.preventDefault(); // 제출 중단
-    }
-  });
-});
-
-</script> -->
-
 
 </head>
 <body>
@@ -38,9 +20,9 @@ $(document).ready(function() {
   <a href="${pageContext.request.contextPath}/index" style="display: flex; align-items: center;">
     <img src="${pageContext.request.contextPath}/resources/images/logo.png" style="width:10%; height: auto;">
     <span class="navbar-brand" style="font-size: 20px; font-weight: bold; text-decoration: none; margin-left: 10px;">
-        PHOS<br>
-        FOOTBALL ACADEMY
-    </span>
+	    PHOS <span style="color: rgb(235,0,0); font-size: 17px;">SINCE 2004</span><br>
+	    FOOTBALL ACADEMY
+	</span>
   </a>
   </div>
  </nav>

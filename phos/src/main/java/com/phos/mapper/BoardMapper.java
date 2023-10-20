@@ -7,5 +7,5 @@ import com.phos.entity.Board;
 public interface BoardMapper {
 	
 	public List<Board> findAllByUserEmail(String email);
-	
+	public Board getDetailByBoardNum (int boardNum);
 }

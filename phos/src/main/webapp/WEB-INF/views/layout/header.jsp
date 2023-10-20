@@ -25,9 +25,9 @@
   <a href="${pageContext.request.contextPath}/index" style="display: flex; align-items: center;">
     <img src="${pageContext.request.contextPath}/resources/images/logo.png" style="width:10%; height: auto; margin-left: 10px;">
     <span class="navbar-brand" style="font-size: 20px; font-weight: bold; text-decoration: none; margin-left: 10px;">
-        PHOS<br>
-        FOOTBALL ACADEMY
-    </span>
+	    PHOS <span style="color: rgb(235,0,0); font-size: 17px;">SINCE 2004</span><br>
+	    FOOTBALL ACADEMY
+	</span>
   </a>
     <ul class="navbar-nav ms-auto"> <!-- navbar-nav에 ms-auto 추가하여 네비게이션 항목 오른쪽으로 정렬 -->
       <li class="nav-item dropdown" style="margin-right: 60px;">
