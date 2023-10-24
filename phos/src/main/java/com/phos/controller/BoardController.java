@@ -45,18 +45,19 @@ public class BoardController {
 		}  
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("username", mvo != null ? mvo.getUsername() : "");
+		model.addAttribute("board_user_email", mvo != null ? mvo.getEmail() : "");
 		return "board/list";
 	}
 	
 	@PostMapping("/list")
 	public String list(@ModelAttribute("board") Board boardVo) {
-		
+		boardService.insertBoard(boardVo);
 		return "redirect:/board/list";
 	}
 	
 	@GetMapping("detail")
 	public String detail(
-			@ModelAttribute("no") int boardNum,
+			@RequestParam("no") int boardNum,
 			Model model, 
 			HttpSession session) {
 		
@@ -65,6 +66,13 @@ public class BoardController {
 		model.addAttribute("data", data);
 		model.addAttribute("username", mvo != null ? mvo.getUsername() : "");
 		return "/board/detail";
+	}
+	
+	@GetMapping("delete")
+	public String delete(
+			@RequestParam("no") int boardNum){
+				boardService.deleteBoard(boardNum);
+				return "redirect:/board/list";
 	}
 	
 }

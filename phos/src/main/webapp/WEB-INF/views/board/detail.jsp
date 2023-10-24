@@ -32,7 +32,18 @@
       <textarea class="form-control" name="response" rows="4" readonly></textarea>
     </div><br>
     <a href="${cpath}/board/list" class="btn btn-primary">목록</a>
+    <a href="${cpath}/board/delete?no=${data.board_num}" class="btn btn-secondary" onclick="confirmDelete(event)">삭제</a>
 </div>
 
+<script>
+function confirmDelete(event) {
+    event.preventDefault();
+    var confirmed = confirm("삭제하시겠습니까?");
+
+    if (confirmed) {
+        window.location = event.target.href;
+    }
+}
+</script>
 </body>
 </html>

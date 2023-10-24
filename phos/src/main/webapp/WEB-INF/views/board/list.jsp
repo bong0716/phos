@@ -13,11 +13,8 @@
 <title>포스 게시판 - 1:1 문의</title>
 </head>
 <body>
-
  <jsp:include page="../layout/header.jsp"/><br><br><br><br><br><br><br><br>
- 
- <h2>1:1 문의</h2>
-
+<h2>1:1 문의</h2>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -53,18 +50,19 @@
 </div>
 <br>
 <div class="container" id="registrationForm" style="display: none;">
- <hr style="border: 2px solid black;">
-  <form id="BoardForm" action="${cpath}/board/list" method="post">
-    <div class="form-group">
-      <label for="title">제목</label>
-      <input type="text" class="form-control" name="title">
-    </div><br>
-    <div class="form-group">
-      <label for="content">문의내용</label>
-      <textarea class="form-control" name="content" rows="4"></textarea>
-    </div><br>
-    <button type="submit" class="btn btn-primary">등록</button>
-  </form>
+    <hr style="border: 2px solid black;">
+    <form id="BoardForm" action="${cpath}/board/list" method="post">
+        <input type="hidden" name="board_user_email" value="${board_user_email}">
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" class="form-control" name="board_subject">
+        </div><br>
+        <div class="form-group">
+            <label for="content">문의내용</label>
+            <textarea class="form-control" name="board_content" rows="4"></textarea>
+        </div><br>
+        <button type="button" class="btn btn-primary" onclick="confirmRegistration()">등록</button>
+    </form>
 </div>
 
  <script>
@@ -81,6 +79,13 @@
 	  })
 	  
 	   $('table').DataTable();
+ 
+ function confirmRegistration() {
+	    var confirmed = confirm("문의하시겠습니까?");
+	    if (confirmed) {
+	        document.getElementById('BoardForm').submit();
+	    }
+	}
  </script>
  
 </body>

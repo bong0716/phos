@@ -11,4 +11,6 @@ public interface BoardService {
 		
 	List<Board> getList(String email);
 	Board getDetail(int boardNum);
+	void insertBoard(Board board);
+	void deleteBoard(int boardNum);
 }

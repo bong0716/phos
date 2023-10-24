@@ -10,8 +10,12 @@
      	select * from board where board_num=#{boardNum}
 	 </select>
 	  
-	 <insert id="">
+	 <insert id="insertBoard" parameterType="com.phos.entity.Board">
 		insert into board(board_user_email, board_subject, board_content)
-		values(#{email}, #{subject}, #{content})
+		values(#{board_user_email}, #{board_subject}, #{board_content})
 	 </insert>
+
+	<delete id="deleteBoard" parameterType="Integer">
+		delete from board where board_num=#{boardNum}
+	</delete>
 </mapper>

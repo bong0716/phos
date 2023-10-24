@@ -32,6 +32,16 @@ public class BoardServiceImpl implements BoardService{
 		Board detail = boardMapper.getDetailByBoardNum(boardNum);
 		return detail;
 	}
+
+	@Override
+	public void insertBoard(Board board) {
+		boardMapper.insertBoard(board);
+	}
+
+	@Override
+	public void deleteBoard(int boardNum) {
+		boardMapper.deleteBoard(boardNum);
+	}
 	
 	
 
