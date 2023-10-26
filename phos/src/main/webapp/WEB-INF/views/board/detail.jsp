@@ -21,11 +21,11 @@
   <hr style="border: 2px solid black;">
     <div class="form-group">
       <label for="title">제목</label>
-      <input type="text" class="form-control" name="title" value="${data.board_subject}" readonly>
+      <input type="text" class="form-control" name="title" value="${data.board_subject}" disabled>
     </div><br>
     <div class="form-group">
       <label for="content">문의내용</label>
-      <textarea class="form-control" name="content" rows="4" readonly>${data.board_content}</textarea>
+      <textarea class="form-control" name="content" rows="4" disabled>${data.board_content}</textarea>
     </div><br>
     <div class="form-group">
       <label for="response">답변</label>
