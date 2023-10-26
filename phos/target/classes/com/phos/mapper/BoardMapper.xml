@@ -18,4 +18,20 @@
 	<delete id="deleteBoard" parameterType="Integer">
 		delete from board where board_num=#{boardNum}
 	</delete>
+	
+	<select id="countBoard" resultType="int">
+		SELECT COUNT(*) FROM BOARD WHERE board_user_email=#{email}
+	</select>
+	
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="selectBoard" resultType="com.phos.entity.Board">
+		SELECT *
+			FROM (
+			    SELECT *
+			    FROM BOARD
+				WHERE board_user_email=#{email}
+			    ORDER BY board_num DESC
+			) AS B
+			LIMIT #{start}, #{end};
+	</select>
 </mapper>

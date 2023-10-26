@@ -71,5 +71,14 @@ ol li:before {
   text-align: center;
 }
 
+.page-number {
+     display: inline-block;
+     padding: 5px 10px; /* 원하는 크기로 조정하세요 */
+     border: 1px solid #333; /* 네모박스 테두리 스타일 및 색상 설정 */
+ }
 
+ .selected {
+     background-color: #333; /* 선택된 숫자의 배경색 설정 */
+     color: #fff; /* 선택된 숫자의 글꼴 색상 설정 */
+ }
 </style>

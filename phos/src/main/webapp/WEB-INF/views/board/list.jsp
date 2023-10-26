@@ -44,11 +44,33 @@
           </c:if>
         </tbody>
       </table>
-      <button class="btn btn-primary" id="showFormButton">문의하기</button>
     </div>
   </div>
 </div>
 <br>
+<div style="display: block; text-align: center;">		
+    <c:if test="${paging.startPage != 1 }">
+        <a href="${cpath}/board/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+    </c:if>
+    <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+        <c:choose>
+            <c:when test="${p == paging.nowPage }">
+                <div class="page-number selected"><b>${p }</b></div>
+            </c:when>
+            <c:when test="${p != paging.nowPage }">
+                <div class="page-number">
+                    <a href="${cpath}/board/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+                </div>
+            </c:when>
+        </c:choose>
+    </c:forEach>
+    <c:if test="${paging.endPage != paging.lastPage}">
+        <a href="${cpath}/board/list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+    </c:if>
+</div>
+
+<div class="container">
+<button class="btn btn-primary" id="showFormButton">문의하기</button>
 <div class="container" id="registrationForm" style="display: none;">
     <hr style="border: 2px solid black;">
     <form id="BoardForm" action="${cpath}/board/list" method="post">
@@ -64,7 +86,7 @@
         <button type="button" class="btn btn-primary" onclick="confirmRegistration()">등록</button>
     </form>
 </div>
-
+</div>
  <script>
  document.addEventListener("DOMContentLoaded", function () {
 	    // 글 등록 버튼 클릭 시 이벤트 처리
@@ -85,6 +107,11 @@
 	    if (confirmed) {
 	        document.getElementById('BoardForm').submit();
 	    }
+	}
+ 
+ function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="${cpath}/board/list?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
  </script>
  

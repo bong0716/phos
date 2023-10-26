@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.phos.entity.Board;
 import com.phos.entity.Member;
+import com.phos.entity.PagingVO;
 import com.phos.service.BoardService;
 import com.phos.service.MemberService;
 
@@ -31,7 +32,10 @@ public class BoardController {
 	private final BoardService boardService;
 
 	@GetMapping("/list")
-	public String list(Model model, HttpSession session) {
+	public String list(PagingVO vo, Model model
+			,@RequestParam(value="nowPage", required=false)String nowPage
+			,@RequestParam(value="cntPerPage", required=false)String cntPerPage
+			,HttpSession session) {
 		
 		Member mvo = (Member) session.getAttribute("mvo");
 		if (mvo == null) {
@@ -39,7 +43,19 @@ public class BoardController {
 	        return "redirect:/member/login"; 
 	    }
 		
-		List<Board> boardList = boardService.getList(mvo.getEmail());
+		int total = boardService.countBoard(mvo.getEmail());
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new PagingVO(mvo.getEmail(), total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		
+		List<Board> boardList = boardService.selectBoard(vo);
 		if (boardList == null) {
 			return "board/list";
 		}  
@@ -57,9 +73,9 @@ public class BoardController {
 	
 	@GetMapping("detail")
 	public String detail(
-			@RequestParam("no") int boardNum,
-			Model model, 
-			HttpSession session) {
+			@RequestParam("no") int boardNum
+			,Model model
+			,HttpSession session) {
 		
 		Board data = boardService.getDetail(boardNum);
 		Member mvo = (Member) session.getAttribute("mvo");
@@ -69,8 +85,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("delete")
-	public String delete(
-			@RequestParam("no") int boardNum){
+	public String delete(@RequestParam("no") int boardNum){
 				boardService.deleteBoard(boardNum);
 				return "redirect:/board/list";
 	}
