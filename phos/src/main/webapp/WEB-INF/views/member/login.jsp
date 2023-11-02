@@ -70,7 +70,7 @@
        </font>
       
       <c:set var="birthdate" value="${errors.getFieldValue('birthdate')}" /> 
-      <input type="text" id="birthdate" placeholder="생년월일 (예: 2000-01-01)" name="birthdate" value="${birthdate}"/>
+      <input type="text" id="birthdate" placeholder="생년월일 (예: 2010-01-01)" name="birthdate" value="${birthdate}"/>
 		<div id="error-message" style="color: red; font-size: 12px;"></div>
       <button>회원가입</button>
     </form>
@@ -88,7 +88,7 @@
       <span>or use your account</span>
       <input type="email" placeholder="이메일" name="email" />
       <input type="password" placeholder="비밀번호" name="password" />
-      <a href="#">비밀번호를 잊어버리셨나요?</a>
+      <a href="${cpath}/member/pwFind">비밀번호를 잊어버리셨나요?</a>
       <button>로그인</button>
     </form>
   </div>

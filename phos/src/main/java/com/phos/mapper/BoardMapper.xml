@@ -32,6 +32,6 @@
 				WHERE board_user_email=#{email}
 			    ORDER BY board_num DESC
 			) AS B
-			LIMIT #{start}, #{end};
+			LIMIT #{start}, 5;
 	</select>
 </mapper>

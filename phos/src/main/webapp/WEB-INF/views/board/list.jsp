@@ -13,8 +13,8 @@
 <title>포스 게시판 - 1:1 문의</title>
 </head>
 <body>
- <jsp:include page="../layout/header.jsp"/><br><br><br><br><br><br><br><br>
-<h2>1:1 문의</h2>
+ <jsp:include page="../layout/header.jsp"/>
+<h2 style="margin-top: 200px;">1:1 문의</h2>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">

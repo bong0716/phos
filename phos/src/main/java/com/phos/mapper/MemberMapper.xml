@@ -36,5 +36,20 @@
     		 select * from members where email=#{email}
  	 </select>
 
-	  
+	 <update id="updateMember" parameterType="com.phos.entity.Member">
+			 UPDATE members
+				  SET
+				    username = #{username},
+				    phone = #{phone},
+				    birthdate = #{birthdate}
+				  WHERE email = #{email}
+	 </update>
+
+	 <delete id="deleteMember" parameterType="String">
+		delete from members where email=#{email}
+	 </delete>
+
+	<update id="updatePw" parameterType="com.phos.entity.Member">
+		update members set password=#{password} where email=#{email}
+	</update>
 </mapper>

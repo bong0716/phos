@@ -13,4 +13,7 @@ public interface MemberMapper {
 	  public String findByEmail(String email);
 	  public String findByPassword(String email);
 	  public Member findByAll(String email);
+	  public void deleteMember(String email);
+	  public void updateMember(Member vo);
+	  public void updatePw(Member vo);
 }

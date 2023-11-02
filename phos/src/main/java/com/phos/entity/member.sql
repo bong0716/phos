@@ -22,7 +22,7 @@ VALUES ('갑을병', '4321@naver.com', '01011112222', '1234', '2001-02-02');
 
 select * from members
 
-delete from members
+delete from members 
 
 ALTER TABLE members DROP INDEX phone;
 

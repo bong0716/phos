@@ -81,7 +81,7 @@
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="programDropdown">
 	          <a class="dropdown-item" href="/phos/member/logout">로그아웃</a>
-	          <a class="dropdown-item" href="#">마이페이지</a>
+	          <a class="dropdown-item" href="/phos/member/myPage">마이페이지</a>
 	        </div>
 		   </li>
 	   </c:if>
@@ -109,7 +109,6 @@
 
 
  <style>
-  /* 추가적인 커스텀 스타일 */
   .navbar-nav {
     margin-left: auto; /* 왼쪽 여백을 오른쪽으로 밀어 네비게이션 항목을 오른쪽으로 정렬 */
   }

@@ -15,7 +15,7 @@
 
 <jsp:include page="../layout/header.jsp"/>
  
-<div style="width: 100%; overflow: hidden;">
+<div style="width: 100%; overflow: hidden; margin-top:100px">
   <img src="${pageContext.request.contextPath}/resources/images/background-image2.jpg" style="width: 100%; height: auto;">
 </div>
 

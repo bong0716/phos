@@ -75,9 +75,8 @@ ol li:before {
 <body>
 
  <jsp:include page="../layout/header.jsp"/>
- <br><br><br><br><br><br><br>
  
-  <ol>
+  <ol style="margin-top: 200px;">
   <li>First, you put 
   	<code><strong>counter-reset: li</strong></code> on your <code><strong>ol</strong></code>. This will initiate a counter.</li>
   <li>Second, remove the default list styles on your list by giving the 

@@ -42,6 +42,15 @@ drop table board
 -- Board_replyStatus : 답변상태 
  
 -- 게시판 시퀀스
+
+SELECT *
+			FROM (
+			    SELECT *
+			    FROM BOARD
+				WHERE board_user_email= '1234@naver.com'
+			    ORDER BY board_num DESC
+			) AS B
+			LIMIT 5, 10;
  
 create sequence BOARD_NUM; 
  

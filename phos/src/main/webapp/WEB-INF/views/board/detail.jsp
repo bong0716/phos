@@ -14,11 +14,10 @@
 </head>
 <body>
 
-<jsp:include page="../layout/header.jsp"/><br><br><br><br><br><br><br><br>
+<jsp:include page="../layout/header.jsp"/>
 <h2>1:1 문의</h2>
 
-<div class="container">
-  <hr style="border: 2px solid black;">
+<div class="container" style="margin-top: 200px;">
     <div class="form-group">
       <label for="title">제목</label>
       <input type="text" class="form-control" name="title" value="${data.board_subject}" disabled>
