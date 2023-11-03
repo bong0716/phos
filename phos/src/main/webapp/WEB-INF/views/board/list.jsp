@@ -12,14 +12,14 @@
 <%@ include file="./include/boardCSS.jsp" %>
 <title>포스 게시판 - 1:1 문의</title>
 </head>
-<body>
+<body style="background-color: rgb(61,61,61)">
  <jsp:include page="../layout/header.jsp"/>
-<h2 style="margin-top: 200px;">1:1 문의</h2>
+<h2 style="margin-top: 200px; color: rgb(227, 176, 4);"><b>1:1 문의</b></h2>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <table summary="This table shows how to create responsive tables using Datatables' extended functionality" class="table table-bordered table-hover dt-responsive">
-        <caption class="text-center">자세한 문의는 전화를 추천드립니다. 📞 <span style="color: blue;">010-0000-0000</span> </caption>
+    <div class="col-xs-12" >
+      <table class="table table-bordered table-hover dt-responsive" id="table">
+        <caption class="text-center" style="color: rgb(227, 176, 4);"> 전화주시면 더욱 빠른 상담 도와드리겠습니다 📞 <span style="color: rgb(255, 198, 4);">010-0000-0000</span> </caption>
         <thead>
           <tr>
             <th>제목</th>
@@ -30,15 +30,15 @@
         <tbody>
         <c:if test="${empty boardList}">
             <tr>
-                <td colspan="4" style="text-align: center;">등록된 1:1 문의가 없습니다.</td>
+                <td colspan="4">등록된 1:1 문의가 없습니다.</td>
             </tr>
         </c:if>
          <c:if test="${!empty boardList}">
            <c:forEach var="boardList" items="${boardList}">
                     <tr>
-	                   <td><a href="${cpath}/board/detail?no=${boardList.board_num}" style="color: black;">${boardList.board_subject}</a></td>
-	                   <td style="width: 20%;"><fmt:formatDate value="${boardList.board_date}" pattern="yyyy-MM-dd HH:mm"/></td>
-                       <td style="width: 20%;">${board.board_replyStatus ? '답변완료' : '답변대기'}</td>            
+	                   <td><a href="${cpath}/board/detail?no=${boardList.board_num}">${boardList.board_subject}</a></td>
+	                   <td><fmt:formatDate value="${boardList.board_date}" pattern="yyyy-MM-dd HH:mm"/></td>
+                       <td>${board.board_replyStatus ? '답변완료' : '답변대기'}</td>            
                     </tr>                    
             </c:forEach> 
           </c:if>
@@ -48,9 +48,9 @@
   </div>
 </div>
 <br>
-<div style="display: block; text-align: center;">		
+<div class="centered-pagination">		
     <c:if test="${paging.startPage != 1 }">
-        <a href="${cpath}/board/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+        <a href="${cpath}/board/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}" >&lt;</a>
     </c:if>
     <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
         <c:choose>
@@ -59,7 +59,7 @@
             </c:when>
             <c:when test="${p != paging.nowPage }">
                 <div class="page-number">
-                    <a href="${cpath}/board/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+                    <a href="${cpath}/board/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}" style="text-decoration: none;">${p }</a>
                 </div>
             </c:when>
         </c:choose>
@@ -115,5 +115,14 @@
 	}
  </script>
  
+ 
+ <style>
+ 
+a {
+  text-decoration: none;
+  color: rgb(227, 176, 4);
+  font-weight: bold;
+}
+ </style>
 </body>
 </html>

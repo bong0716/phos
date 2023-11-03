@@ -7,9 +7,15 @@ body {
   font-size: 140%; 
 }
 
+a {
+  text-decoration: none;
+  color: rgb(255, 198, 4);
+}
+
 h2 {
   text-align: center;
   padding: 20px 0;
+  color: rgb(255, 198, 4);
 }
 
 table caption {
@@ -22,18 +28,33 @@ table.dataTable td {
   white-space: nowrap;
 }
 
-table th {
+#table th {
     text-align: center;
+    color: rgb(227, 176, 4);
+    background-color: rgb(61,61,61);
 }
 
-table td {
+#table {
+	background-color: rgb(61,61,61);
+	border: 0.5px solid rgb(153, 119, 2);
+}
+
+#table td {
     text-align: center;
+    color: rgb(153, 119, 2);
+    background-color: rgb(61,61,61);
+    width: 20%;
+}
+
+#table tr{
+  background-color: rgb(61,61,61);
 }
 
 .p {
   text-align: center;
   padding-top: 140px;
   font-size: 14px;
+  color: rgb(255, 198, 4);
 }
 
 ol {
@@ -81,4 +102,11 @@ ol li:before {
      background-color: #333; /* 선택된 숫자의 배경색 설정 */
      color: #fff; /* 선택된 숫자의 글꼴 색상 설정 */
  }
+ 
+.centered-pagination {
+  text-align: center;
+  display: block;
+}
+
+
 </style>

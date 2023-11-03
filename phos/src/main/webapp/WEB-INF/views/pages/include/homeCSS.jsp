@@ -13,91 +13,30 @@ body {
   line-height: normal;
 }
 
-a,
-a:visited {
-  outline: none;
-  text-decoration: none;
+img{
+  width: 320px; 
+  height: auto;
 }
 
-a:hover,
-a:focus,
-a:visited:hover {
-  color: #bdc3c7;
-  text-decoration: none;
+.center-text {
+  text-align: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh; 
 }
 
-.credit,
-.tengah {
-  margin: 1em auto;
-  padding: .5em 1em;
-  text-align: center;
-  max-width: 500px;
-  color: #95a5a6;
+.center-text h1 {
+  margin: 0; 
+  line-height: 1.4; 
+  letter-spacing: -1px;
 }
 
-.tengah {
-  font-weight: 700;
-  font-size: 120%;
-  max-width: 690px;
-}
-
-.note {
-  position: relative;
-  width: 40%;
-  padding: 1.2em 1.5em;
-  margin: 2em auto;
-  color: #fff;
-  background: #2ecc71;
-  overflow: hidden
-}
-
-.note.orange {
-  background: #f39c12;
-}
-
-.note.crusta {
-  background: #F2784B;
-}
-
-.note.river {
-  background: #3498db;
-}
-
-.note:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-width: 0 16px 16px 0;
-  border-style: solid;
-  border-color: #fff #fff #27ae60 #27ae60;
-  background: #27ae60;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
-  display: block;
-  width: 0
-}
-
-.note.orange:before {
-  border-color: #fff #fff #e67e22 #e67e22;
-  background: #e67e22;
-}
-
-.note.crusta:before {
-  border-color: #fff #fff #de6e45 #de6e45;
-  background: #de6e45;
-}
-
-.note.river:before {
-  border-color: #fff #fff #2980b9 #2980b9;
-  background: #2980b9;
-}
-
-@media only screen and (max-width:768px) {
-  position: relative;
-  width: 70%;
-}
-
-
+.custom-text {
+  color: white; 
+  background-color: rgb(255,192,23); 
+  padding: 3px 1px; 
 }
 
 </style>
