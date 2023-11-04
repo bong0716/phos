@@ -34,10 +34,18 @@ table.dataTable td {
     background-color: rgb(61,61,61);
 }
 
-#table {
+#table,
+#BoardForm input,
+#BoardForm textarea {
 	background-color: rgb(61,61,61);
 	border: 0.5px solid rgb(153, 119, 2);
 }
+
+#BoardForm {
+	color: rgb(227, 176, 4);
+}
+
+
 
 #table td {
     text-align: center;

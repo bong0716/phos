@@ -70,7 +70,7 @@
 </div>
 
 <div class="container">
-<button class="btn btn-primary" id="showFormButton">문의하기</button>
+<button class="btn btn-outline-warning" id="showFormButton">문의하기</button>
 <div class="container" id="registrationForm" style="display: none;">
     <hr style="border: 2px solid black;">
     <form id="BoardForm" action="${cpath}/board/list" method="post">
@@ -83,7 +83,7 @@
             <label for="content">문의내용</label>
             <textarea class="form-control" name="board_content" rows="4"></textarea>
         </div><br>
-        <button type="button" class="btn btn-primary" onclick="confirmRegistration()">등록</button>
+        <button type="button" class="btn btn-outline-warning" onclick="confirmRegistration()">등록</button>
     </form>
 </div>
 </div>
