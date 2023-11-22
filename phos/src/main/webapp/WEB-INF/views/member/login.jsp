@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="import" href="../favicon.jsp">
 <link rel="stylesheet" href="${cpath}/resources/css/style.css"> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
  <%@ include file="./include/signUpAndInFormCSS.jsp" %>
@@ -14,6 +15,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
+
 <body>
  <nav class="navbar navbar-expand-sm">
   <div class="container-fluid">
@@ -34,9 +36,9 @@
     <form id="registerForm" action="${cpath}/member/register" method="post" >
       <h1>회원가입</h1>
       <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="./naverLogin"><img class="facebook" src="${cpath}/resources/images/facebook.png"></a>
+        <a href="./naverLogin"><img class="naver" src="${cpath}/resources/images/naverG.png"></a>
+        <a href="./naverLogin"><img class="kakao" src="${cpath}/resources/images/kakao.png"></a>
       </div>
       <span>or use your email for registration</span>
       
@@ -81,9 +83,9 @@
     <form action="${cpath}/member/login" method="post" >
       <h1>로그인</h1>
       <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="./naverLogin"><img class="facebook" src="${cpath}/resources/images/facebook.png"></a>
+        <a href="./naverLogin"><img class="naver" src="${cpath}/resources/images/naverG.png"></a>
+        <a href="./naverLogin"><img class="kakao" src="${cpath}/resources/images/kakao.png"></a>
       </div>
       <span>or use your account</span>
       <input type="email" placeholder="이메일" name="email" />

@@ -16,5 +16,6 @@ public class Board {
     private int board_count;         // 글 조회수
     private Date board_date;         // 글 작성일
     private boolean board_replyStatus; // 답변 상태
+    private String reply_content; // 답변
 }
 

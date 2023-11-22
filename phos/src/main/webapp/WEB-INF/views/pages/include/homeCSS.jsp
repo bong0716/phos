@@ -39,4 +39,40 @@ img{
   padding: 3px 1px; 
 }
 
+.slide_div {
+  position: relative;
+}
+
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    position: absolute;
+    bottom: 5px;
+    color: #fff;
+    border: 0;
+    background: none;
+    z-index: 1;
+     top: 5px;
+}
+ 
+.slick-prev {
+    left: 5%;
+}
+.slick-next {
+    right: 5%;   
+}
+.slick-prev:before {
+    content: '<';
+}
+.slick-next:before {
+     content: ">";
+}
+ 
+.slick-prev:before, .slick-next:before {
+    font-size: 30px;
+    line-height: 2;
+    opacity: .75;
+    color: rgb(0,0,0);
+}
+
 </style>

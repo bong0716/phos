@@ -15,11 +15,11 @@
 <body style="background-color: rgb(61,61,61)">
  <jsp:include page="../layout/header.jsp"/>
 <h2 style="margin-top: 200px; color: rgb(227, 176, 4);"><b>1:1 문의</b></h2>
-<div class="container">
+<div class="container" style="max-width: 50%; margin: 0 auto;">
   <div class="row">
     <div class="col-xs-12" >
-      <table class="table table-bordered table-hover dt-responsive" id="table">
-        <caption class="text-center" style="color: rgb(227, 176, 4);"> 전화주시면 더욱 빠른 상담 도와드리겠습니다 📞 <span style="color: rgb(255, 198, 4);">010-0000-0000</span> </caption>
+      <table class="table table-bordered table-hover dt-responsive" id="boardT">
+        <caption class="text-center" style="color: rgb(214, 166, 4);"> 전화주시면 더욱 빠른 상담 도와드리겠습니다! 📞 <span style="color: rgb(214, 166, 4);">010-0000-0000</span> </caption>
         <thead>
           <tr>
             <th>제목</th>
@@ -30,15 +30,22 @@
         <tbody>
         <c:if test="${empty boardList}">
             <tr>
-                <td colspan="4">등록된 1:1 문의가 없습니다.</td>
+                <td style="text-align: center" colspan="4">등록된 1:1 문의가 없습니다.</td>
             </tr>
         </c:if>
          <c:if test="${!empty boardList}">
            <c:forEach var="boardList" items="${boardList}">
                     <tr>
-	                   <td><a href="${cpath}/board/detail?no=${boardList.board_num}">${boardList.board_subject}</a></td>
+	                   <td style="text-align: left"><a href="${cpath}/board/detail?no=${boardList.board_num}">${boardList.board_subject}</a></td>
 	                   <td><fmt:formatDate value="${boardList.board_date}" pattern="yyyy-MM-dd HH:mm"/></td>
-                       <td>${board.board_replyStatus ? '답변완료' : '답변대기'}</td>            
+                       <c:choose>
+			                <c:when test="${boardList.board_replyStatus}">
+			                    <td style="color: green; text-align: right">답변완료</td>
+			                </c:when>
+			                <c:otherwise>
+			                    <td style="color: #DE3030; text-align: right">답변대기</td>
+			                </c:otherwise>
+			            </c:choose>                        
                     </tr>                    
             </c:forEach> 
           </c:if>
@@ -69,21 +76,21 @@
     </c:if>
 </div>
 
-<div class="container">
-<button class="btn btn-outline-warning" id="showFormButton">문의하기</button>
+<div class="container" style="max-width: 50%;">
+<button class="btn btn-danger" id="showFormButton">문의하기</button>
 <div class="container" id="registrationForm" style="display: none;">
-    <hr style="border: 2px solid black;">
+    <hr style="border: 1px solid black;">
     <form id="BoardForm" action="${cpath}/board/list" method="post">
         <input type="hidden" name="board_user_email" value="${board_user_email}">
         <div class="form-group">
-            <label for="title">제목</label>
-            <input type="text" class="form-control" name="board_subject">
+            <label for="title" >제목</label>
+            <input type="text" class="form-control" name="board_subject" id="title">
         </div><br>
         <div class="form-group">
-            <label for="content">문의내용</label>
-            <textarea class="form-control" name="board_content" rows="4"></textarea>
+            <label for="content" >문의내용</label>
+            <textarea class="form-control" name="board_content" rows="4" id="content"></textarea>
         </div><br>
-        <button type="button" class="btn btn-outline-warning" onclick="confirmRegistration()">등록</button>
+        <button type="button" class="btn btn-warning" onclick="confirmRegistration()" style="margin : 0px 0px 40px 0px">등록</button>
     </form>
 </div>
 </div>
@@ -102,12 +109,21 @@
 	  
 	   $('table').DataTable();
  
+ 
  function confirmRegistration() {
-	    var confirmed = confirm("문의하시겠습니까?");
-	    if (confirmed) {
-	        document.getElementById('BoardForm').submit();
+	    var title = document.getElementById("title").value;
+	    var content = document.getElementById("content").value;
+
+	    if (title.trim() === '' || content.trim() === '') {
+	        alert("제목과 문의내용을 모두 입력해주세요.");
+	    } else {
+	        var confirmed = confirm("문의하시겠습니까?");
+	        if (confirmed) {
+	            document.getElementById('BoardForm').submit();
+	        }
 	    }
 	}
+ 
  
  function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
@@ -120,7 +136,7 @@
  
 a {
   text-decoration: none;
-  color: rgb(227, 176, 4);
+  color: rgb(214, 166, 4);
   font-weight: bold;
 }
  </style>

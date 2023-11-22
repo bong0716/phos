@@ -16,4 +16,7 @@ public interface BoardService {
 	void deleteBoard(int boardNum);
 	public int countBoard(String email);
 	public List<Board> selectBoard(PagingVO vo);
+	public int countAll();
+	public List<Board> selectAll(PagingVO vo);
+	public void insertReply(Board board);
 }

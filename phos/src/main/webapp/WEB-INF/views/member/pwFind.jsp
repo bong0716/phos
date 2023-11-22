@@ -25,13 +25,7 @@
 </nav>
 <div class="container">
   <form action="${cpath}/member/pwFind" method="post" >
-    <h1>비밀번호 찾기</h1>
-    <div class="social-container">
-      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-      <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-    <span>or use your account</span>
+    <h1>비밀번호 찾기</h1><br>
     <input type="email" placeholder="이메일" name="email" style="width:300px" />
     <input type="text" placeholder="이름" name="username" style="width:300px" />
     <a href="${cpath}/member/login">로그인/회원가입</a>

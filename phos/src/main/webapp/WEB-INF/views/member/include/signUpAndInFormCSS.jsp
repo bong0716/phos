@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<style type="text/tailwindcss">
+<style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 * {box-sizing: border-box;}
 body {
@@ -76,9 +76,9 @@ input {
   position: relative;
   overflow: hidden;
   width: 768px;
-  height: 800px;
+  height: 600px;
   max-width: 100%;
-  min-height: 1000px;
+  min-height: 500px;
 }
 .form-container {
   position: absolute;
@@ -192,4 +192,10 @@ footer a {color: #3c97bf;  text-decoration: none;}
     height: 100vh;
     margin: -20px 0 50px;
   } */
+
+.kakao, .naver, .facebook {
+	width: 40px;
+	height: 40px;
+}
+
 </style>

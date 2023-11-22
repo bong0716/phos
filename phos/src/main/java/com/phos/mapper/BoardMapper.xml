@@ -23,7 +23,6 @@
 		SELECT COUNT(*) FROM BOARD WHERE board_user_email=#{email}
 	</select>
 	
-	<!-- 페이징 처리 후 게시글 조회 -->
 	<select id="selectBoard" resultType="com.phos.entity.Board">
 		SELECT *
 			FROM (
@@ -32,6 +31,27 @@
 				WHERE board_user_email=#{email}
 			    ORDER BY board_num DESC
 			) AS B
-			LIMIT #{start}, 5;
+			LIMIT #{start}, 7;
 	</select>
+	
+	<select id="countAll" resultType="Integer">
+		select count(*) from board;
+	</select>
+	
+	<select id="selectAll" resultType="com.phos.entity.Board">
+		SELECT *
+			FROM (
+			    SELECT *
+			    FROM BOARD
+			    ORDER BY board_num DESC
+			) AS B
+			LIMIT #{start}, 10;
+	</select>
+	
+	<update id="updateReply" parameterType="com.phos.entity.Board">
+		UPDATE board
+			SET reply_content = #{reply_content},
+			    board_replyStatus = TRUE 
+			WHERE board_num = #{board_num};
+	</update>
 </mapper>

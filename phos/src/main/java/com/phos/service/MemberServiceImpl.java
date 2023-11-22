@@ -1,5 +1,14 @@
 package com.phos.service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
+
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +17,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindException;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.phos.entity.Member;
 import com.phos.mapper.MemberMapper;
@@ -91,4 +102,19 @@ public class MemberServiceImpl implements MemberService {
 			sendMail.setTo(mvo.getEmail());
 			sendMail.send();
 		}
+		
+		public String getNaverAuthorizeUrl(String type) throws URISyntaxException, MalformedURLException, UnsupportedEncodingException {
+
+	        UriComponents uriComponents = UriComponentsBuilder
+	                .fromUriString("https://nid.naver.com/oauth2.0" + "/" + type)
+	                .queryParam("response_type", "code")
+	                .queryParam("client_id", "아이디")
+	                .queryParam("redirect_uri", URLEncoder.encode("http://localhost:8080/phos/member/naverLogin", "UTF-8"))
+	                .queryParam("state", URLEncoder.encode("1234", "UTF-8"))
+	                .build();
+
+	        return uriComponents.toString();
+	    }
+		
+		
 }

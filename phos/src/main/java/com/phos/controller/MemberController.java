@@ -1,9 +1,14 @@
 package com.phos.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.Locale;
 import java.util.Random;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -27,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.phos.config.BindExceptionWithViewName;
 import com.phos.entity.Member;
 import com.phos.config.WebSecurityConfig;
@@ -202,4 +208,15 @@ public class MemberController {
 		model.addAttribute("message", "비밀번호가 성공적으로 변경되었습니다.");
 		return "member/login";
 	}
+	
+	@GetMapping("/naverLogin")
+	public void naverLogin(HttpServletRequest request, HttpServletResponse response) throws MalformedURLException, UnsupportedEncodingException, URISyntaxException {
+		String url = memberService.getNaverAuthorizeUrl("authorize");
+        try {
+            response.sendRedirect(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
 }

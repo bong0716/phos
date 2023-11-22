@@ -2,6 +2,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
 <title>포스 축구 아카데미</title>
@@ -15,12 +16,15 @@
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+<link rel="shortcut icon" href="https://github.com/hyejinyoon20010716/phos/assets/119990564/570155ba-4b80-4712-905f-e87a99da5aa4">
+
 <script>
-  jQuery.noConflict();
-  (function($) {
-    $(document).ready(function() {
-      $('.slide_div').slick({
-    	  centerMode: true,
+
+jQuery.noConflict();
+(function($) {
+  $(document).ready(function() {
+    $('.slide_div').slick({
+  	  centerMode: true,
 		  centerPadding: '90px',
 		  slidesToShow: 5,
 		  slidesToScroll: 1,
@@ -46,18 +50,18 @@
 		      }
 		    }
 		  ]
-      });
     });
-  })(jQuery);
-</script>
+  });
+})(jQuery);
 
+</script>
 </head>
 <body>
 
 <jsp:include page="../layout/header.jsp"/>
  
 <div style="width: 100%; overflow: hidden; margin-top:100px">
-  <img src="${pageContext.request.contextPath}/resources/images/background-image2.jpg" style="width: 100%; height: auto;">
+  <img src="${cpath}/resources/images/background-image2.jpg" style="width: 100%; height: auto;">
 </div>
   
   <div class="center-text">
@@ -66,8 +70,6 @@
 	  <h3 style="letter-spacing: -2px;">210명의 아이들과 함께 하고 있습니다.</h3>
   </div>
   
-  
-
   <div class="slide_div">
     <div>
         <img src="./resources/images/1.jpg" >
@@ -94,6 +96,8 @@
         <img src="./resources/images/8.jpg" >
     </div>				
   </div>
-  
+ 
+ 
+<jsp:include page="../layout/footer.jsp"/>
 </body>
 </html>

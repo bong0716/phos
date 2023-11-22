@@ -6,13 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="import" href="../favicon.jsp">
 <title>마이페이지</title>
 </head>
 <body>
 
 <jsp:include page="../layout/header.jsp"/>
 
-<div class="container" style="margin-top: 250px;">
+<div class="container" style="margin-top: 250px; max-width: 800px; ">
   <form id="updateForm" action="${cpath}/member/update" method="post" onsubmit="return validateForm();" >
     
     <div class="form-group">

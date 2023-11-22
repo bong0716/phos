@@ -32,7 +32,8 @@ public class BoardController {
 	private final BoardService boardService;
 
 	@GetMapping("/list")
-	public String list(PagingVO vo, Model model
+	public String list(PagingVO vo
+			,Model model
 			,@RequestParam(value="nowPage", required=false)String nowPage
 			,@RequestParam(value="cntPerPage", required=false)String cntPerPage
 			,HttpSession session) {
@@ -46,11 +47,11 @@ public class BoardController {
 		int total = boardService.countBoard(mvo.getEmail());
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "5";
+			cntPerPage = "7";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) { 
-			cntPerPage = "5";
+			cntPerPage = "7";
 		}
 		vo = new PagingVO(mvo.getEmail(), total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);

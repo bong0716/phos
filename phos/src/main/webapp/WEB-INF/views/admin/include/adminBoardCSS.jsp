@@ -30,9 +30,10 @@ table caption {
   padding: .5em 0;
 }
 
-table.dataTable th,
-table.dataTable td {
-  white-space: nowrap;
+.subjectLink{
+  text-decoration: none;
+  color: rgb(214, 166, 4);
+  font-weight: bold;
 }
 
 #boardT th {
@@ -46,29 +47,9 @@ table.dataTable td {
     text-align: center;
     color: var(--lightYellow-color);
     background-color: var(--background-color);
-    width: 20%;
     border: none;
 }
 
-#boardT th:first-child, td:first-child {
-    text-align: left;
-}
-
-#boardT th:last-child, #table td:last-child {
-    text-align: right;
-}
-
-#boardT {
-	background-color: var(--background-color);
-	border: 0.5px solid;
-	border-color: var(--tableBorder-color);
-}
-
-#BoardForm input,
-#BoardForm textarea {
-	background-color: var(--tableBg-color);
-	border: 0.5px solid;
-}
 
 #boardT {
 	background-color: var(--background-color);
@@ -110,6 +91,36 @@ label {
 .container input:disabled, .container textarea:disabled {
     background-color: rgb(170, 170, 170);
     border-color: rgb(170, 170, 170); 
+}
+
+.modal-dialog {
+    max-width: 40%;
+    max-height: 100%; 
+    top: 20%;
+}
+	
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F2EF93;
+}
+
+.modal-body form {
+    display: flex;
+    align-items: center;
+}
+
+.modal-body form textarea {
+    flex: 1;
+    width: auto;
+    height: 120px;
+    resize: none;
+    margin-left: 10px;
+}
+   
+P {
+	color: #000000;
 }
 
 </style>

@@ -54,4 +54,19 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.selectBoard(vo);
 	}
 
+	@Override
+	public int countAll() {
+		return boardMapper.countAll();
+	}
+
+	@Override
+	public List<Board> selectAll(PagingVO vo) {
+		return boardMapper.selectAll(vo);
+	}
+
+	@Override
+	public void insertReply(Board board) {
+		boardMapper.updateReply(board);
+	}
+
 }

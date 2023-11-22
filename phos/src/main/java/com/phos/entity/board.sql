@@ -11,11 +11,14 @@ CREATE TABLE board (
   board_count INT DEFAULT 0,
   board_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   board_replyStatus BOOLEAN DEFAULT FALSE,
+  reply_content VARCHAR(2000),
   PRIMARY KEY (board_num),
   FOREIGN KEY (board_user_email) REFERENCES members(email) ON DELETE CASCADE 
 );
 
 
+ALTER TABLE board
+ADD COLUMN reply_content varchar(2000);
 
 INSERT INTO board (board_user_email, board_subject, board_content)
 VALUES ('1234@naver.com', 'Subject 2', 'Content 1');
