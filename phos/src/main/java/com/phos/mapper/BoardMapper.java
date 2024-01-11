@@ -16,4 +16,6 @@ public interface BoardMapper {
 	public int countAll();
 	public List<Board> selectAll(PagingVO vo);
 	public void updateReply(Board board);
+	public int countReplyStatusTrue();
+	public int countReplyStatusFalse();
 }

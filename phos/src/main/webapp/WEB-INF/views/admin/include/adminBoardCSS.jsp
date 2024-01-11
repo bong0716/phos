@@ -128,4 +128,24 @@ P {
 	color: #000000;
 }
 
+#rightAlignedContainer {
+    text-align: right; 
+    margin-right: 40px;
+}
+
+#NumberOfReplyStatusTrue {
+	background-color: white;
+	border-radius: 5px; 
+    color: green;
+    display: inline-block; 
+    margin-right: 20px;
+}
+
+#NumberOfReplyStatusFalse {
+	background-color: white;
+	border-radius: 5px; 
+    color: #DE3030;
+    display: inline-block; 
+}
+
 </style>

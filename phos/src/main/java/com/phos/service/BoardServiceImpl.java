@@ -69,4 +69,14 @@ public class BoardServiceImpl implements BoardService{
 		boardMapper.updateReply(board);
 	}
 
+	@Override
+	public int countReplyStatusTrue() {
+		return boardMapper.countReplyStatusTrue();
+	}
+
+	@Override
+	public int countReplyStatusFalse() {
+		return boardMapper.countReplyStatusFalse();
+	}
+
 }

@@ -55,9 +55,9 @@ public class AdminController {
 		pagingInfo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", pagingInfo);
 		
-		List<Board> boardList = boardService.selectAll(pagingInfo);
-		model.addAttribute("boardList", boardList);
-		
+		addBoardListToModel(model, pagingInfo);
+	    addReplyStatusToModel(model);
+
 		return "admin/board";
 	}
 	
@@ -100,6 +100,18 @@ public class AdminController {
 		model.addAttribute("memberList", memberList);
 		
 		return "admin/member";
+	}
+	
+	private void addBoardListToModel(Model model, PagingVO pagingInfo) {
+	    List<Board> boardList = boardService.selectAll(pagingInfo);
+	    model.addAttribute("boardList", boardList);
+	}
+
+	private void addReplyStatusToModel(Model model) {
+	    int replyStatusTrue = boardService.countReplyStatusTrue();
+	    int replyStatusFalse = boardService.countReplyStatusFalse();
+	    model.addAttribute("NumberOfReplyStatusTrue", replyStatusTrue);
+	    model.addAttribute("NumberOfReplyStatusFalse", replyStatusFalse);
 	}
 
  	

@@ -54,4 +54,12 @@
 			    board_replyStatus = TRUE 
 			WHERE board_num = #{board_num};
 	</update>
+	
+	<select id="countReplyStatusTrue" resultType="Integer">
+		SELECT COUNT(*) FROM board WHERE board_replyStatus = TRUE;
+	</select>
+	
+	<select id="countReplyStatusFalse" resultType="Integer">
+		SELECT COUNT(*) FROM board WHERE board_replyStatus = FALSE;
+	</select>
 </mapper>

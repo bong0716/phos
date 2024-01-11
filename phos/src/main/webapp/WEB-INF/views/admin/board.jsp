@@ -92,6 +92,16 @@
 			    	<jsp:include page="./layout/leftPanel.jsp"/>
 			    <!-- /Left Panel -->
 			    
+			    <br>
+			    <div id="rightAlignedContainer">
+				    <div id="NumberOfReplyStatusTrue">
+				    	답변완료 : ${NumberOfReplyStatusTrue}
+				    </div>
+				    <div id="NumberOfReplyStatusFalse">
+				    	답변대기 : ${NumberOfReplyStatusFalse}
+				    </div>
+			    </div>
+			    
 				<!-- Board -->
 			    <div class="col-xs-12" >
 			      <table class="table table-bordered table-hover dt-responsive" id="boardT">
