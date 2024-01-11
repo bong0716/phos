@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.phos.entity.Board;
+import com.phos.entity.Member;
 import com.phos.entity.PagingVO;
 import com.phos.service.BoardService;
+import com.phos.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminController {
 	
 	private final BoardService boardService;
+	private final MemberService memberService;
 	
 	@GetMapping("/index")
 	public String index() {
@@ -34,7 +37,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/board")
-	public String board(PagingVO vo
+	public String board(PagingVO pagingInfo
 			,Model model
 			,@RequestParam(value="nowPage", required=false)String nowPage
 			,@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
@@ -49,10 +52,10 @@ public class AdminController {
 			cntPerPage = "10";
 		}
 		
-		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		model.addAttribute("paging", vo);
+		pagingInfo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", pagingInfo);
 		
-		List<Board> boardList = boardService.selectAll(vo);
+		List<Board> boardList = boardService.selectAll(pagingInfo);
 		model.addAttribute("boardList", boardList);
 		
 		return "admin/board";
@@ -71,6 +74,32 @@ public class AdminController {
 		
 		boardService.insertReply(boardVo);
 		return "redirect:/admin/board";
+	}
+	
+	@GetMapping("/member")
+	public String member(PagingVO pagingInfo
+			,Model model
+			,@RequestParam(value="nowPage", required=false)String nowPage
+			,@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
+		int total = memberService.countAll();
+		
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "10";
+		}
+		
+		pagingInfo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", pagingInfo);
+		
+		List<Member> memberList = memberService.selectAll(pagingInfo);
+		model.addAttribute("memberList", memberList);
+		
+		return "admin/member";
 	}
 
  	

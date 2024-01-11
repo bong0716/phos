@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
@@ -21,6 +22,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.phos.entity.Member;
+import com.phos.entity.PagingVO;
 import com.phos.mapper.MemberMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -115,6 +117,16 @@ public class MemberServiceImpl implements MemberService {
 
 	        return uriComponents.toString();
 	    }
+
+
+		@Override
+		public List<Member> selectAll(PagingVO pagingInfo){
+			List<Member> memberList = memberMapper.selectAll(pagingInfo);
+			return memberList;
+		}
 		
-		
+		@Override
+		public int countAll() {
+			return memberMapper.countAll();
+		}
 }

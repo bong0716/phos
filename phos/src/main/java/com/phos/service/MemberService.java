@@ -3,11 +3,13 @@ package com.phos.service;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindException;
 
 import com.phos.entity.Member;
+import com.phos.entity.PagingVO;
 
 @Service
 public interface MemberService {
@@ -22,5 +24,6 @@ public interface MemberService {
 	 void sendMail(Member mvo, int num) throws Exception;
 	 public String getNaverAuthorizeUrl(String type) 
 			 throws URISyntaxException, MalformedURLException, UnsupportedEncodingException;
-
+	 public List<Member> selectAll(PagingVO pagingInfo);
+	 public int countAll();
 }

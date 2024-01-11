@@ -1,9 +1,12 @@
 package com.phos.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.validation.BindException;
 
 import com.phos.entity.Member;
+import com.phos.entity.PagingVO;
 
 
 public interface MemberMapper {
@@ -16,4 +19,6 @@ public interface MemberMapper {
 	  public void deleteMember(String email);
 	  public void updateMember(Member vo);
 	  public void updatePw(Member vo);
+	  public List<Member> selectAll(PagingVO pagingInfo);
+	  public int countAll();
 }

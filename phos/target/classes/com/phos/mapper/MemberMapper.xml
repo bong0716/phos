@@ -52,4 +52,20 @@
 	<update id="updatePw" parameterType="com.phos.entity.Member">
 		update members set password=#{password} where email=#{email}
 	</update>
+	
+	<select id="selectAll" resultType="com.phos.entity.Member">
+		SELECT *
+			FROM (
+			    SELECT *
+			    FROM members
+			    ORDER BY member_Num DESC
+			) AS B
+			LIMIT #{start}, 10;
+	</select>
+	
+	<select id="countAll" resultType="Integer">
+		select count(*) from members;
+	</select>
+	
+	
 </mapper>

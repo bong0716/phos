@@ -31,7 +31,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 인터셉터로 요청을 안전하게 보호하는 방법을 설정하기 위한 오버라이딩이다.
-        super.configure(http); // 모든 url 막고있음
+        
+    	http
+	        .authorizeRequests()
+	            // 권한 설정
+	            .antMatchers("/admin/**").hasRole("ADMIN")
+	            .antMatchers("/user/**").hasRole("USER")
+	            .anyRequest().authenticated()
+	            .and()
+	        .formLogin()
+	            .loginPage("/login") // 로그인 페이지 경로
+	            .permitAll()
+	            .and()
+	        .csrf().disable(); // CSRF 비활성화 (테스트용)
     }
 
     @Override

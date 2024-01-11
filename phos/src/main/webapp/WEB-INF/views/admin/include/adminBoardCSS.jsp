@@ -52,12 +52,17 @@ table caption {
 
 
 #boardT {
-	background-color: var(--background-color);
-	border-collapse:collapse;
-	border-right: none;
-	border-left: none;
-	border-top-color: var(--yellow-color);
-	width: 100%;
+    background-color: var(--background-color);
+    border-collapse: collapse;
+    border-right: none;
+    border-left: none;
+    border-top-color: var(--yellow-color);
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px; 
+    border-radius: 10px; 
+    overflow: hidden;
 }
 
 .p {
@@ -94,7 +99,7 @@ label {
 }
 
 .modal-dialog {
-    max-width: 40%;
+    max-width: 50%;
     max-height: 100%; 
     top: 20%;
 }

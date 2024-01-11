@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class Member {
 	
-    private int memberNum;
+    private int member_num;
     
     @NotBlank
     private String username;
@@ -33,7 +33,7 @@ public class Member {
     
     @NotNull
     private Date birthdate;
-    private Timestamp registrationDate;
+    private Date registration_date;
     
     private Role role;
 }

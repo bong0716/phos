@@ -5,11 +5,15 @@ CREATE TABLE members (
   phone VARCHAR(100) NOT NULL,
   password VARCHAR(255) NOT NULL,
   birthdate DATE,
-  registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  role ENUM DEFAULT 'ROLE_USER'
 );
 
 ALTER TABLE members
 modify COLUMN role ENUM('ROLE_USER', 'ROLE_ADMIN') DEFAULT 'ROLE_USER';
+
+ALTER TABLE members
+modify COLUMN registration_date DATETIME DEFAULT CURRENT_TIMESTAMP;
 
 update members set role="ROLE_USER";
 

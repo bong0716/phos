@@ -24,29 +24,20 @@
 
 <script>
     $(document).ready(function() {
-        $('.subjectLink').click(function(event) {
+        $('.nameLink').click(function(event) {
             event.preventDefault();
-            const num = $(this).data('boardnum'); // 클릭된 요소의 data-boardNum 값 가져오기
-            // AJAX 요청 보내기
             $.ajax({
-                url: '${cpath}/admin/detail', 
+                url: '${cpath}/admin/member', 
                 method: 'GET',
-                data: { num: num }, 
-                success: function(data) {
-                    const { board_user_email, board_subject, board_content, board_date, reply_content, board_replyStatus } = data; 
+                success: function() {
+                    const { member_Num, username, email, phone, birthdate, registration_Date} = data;
                     
-                    if (board_replyStatus) {
-                        $('#replyBtn').hide();
-                        $('#reply').prop('readonly', true);
-                    } else {
-                        $('#replyBtn').show();
-                        $('#reply').prop('readonly', false);
-                    }
-                    
-                    $('#writer').text(board_user_email);
-                    $('#modalSubject').text(board_subject);
-                    $('#content').text(board_content);
-                    $('#reply').text(reply_content);
+                    $('#memberNum').text(memberNum);
+                    $('#username').text(username);
+                    $('#email').text(email);
+                    $('#phone').text(phone);
+                    $('#birthdate').text(birthdate);
+                    $('#registrationDate').text(registrationDate);
 
                     const date = new Date(board_date);
 
@@ -92,37 +83,34 @@
 			    	<jsp:include page="./layout/leftPanel.jsp"/>
 			    <!-- /Left Panel -->
 			    
+			    
+			    
 				<!-- Board -->
 			    <div class="col-xs-12" >
 			      <table class="table table-bordered table-hover dt-responsive" id="boardT">
 			        <thead>
 			          <tr>
-			          	<th>작성자</th>
-			            <th>제목</th>
-			            <th>작성일</th>
-			            <th>답변상태</th>
+			          	<th>이메일</th>
+			            <th>이름</th>
+			            <th>생년월일</th>
+			            <th>휴대폰번호</th>
+			            <th>가입일자</th>
 			          </tr>
 			        </thead>
 			        <tbody>
-			        <c:if test="${empty boardList}">
+			        <c:if test="${empty memberList}">
 			            <tr>
-			                <td style="text-align: center" colspan="4">등록된 1:1 문의가 없습니다.</td>
+			                <td style="text-align: center" colspan="4">등록된 회원이 없습니다.</td>
 			            </tr>
 			        </c:if>
-			         <c:if test="${!empty boardList}">
-					    <c:forEach var="boardItem" items="${boardList}">
+			         <c:if test="${!empty memberList}">
+					    <c:forEach var="memberItem" items="${memberList}">
 					        <tr>
-					            <td>${boardItem.board_user_email}</td>
-					            <td><a href="#" class="subjectLink" id="subjectLink" data-boardNum="${boardItem.board_num}">${boardItem.board_subject}</a></td>
-					            <td><fmt:formatDate value="${boardItem.board_date}" pattern="yyyy-MM-dd HH:mm"/></td>
-					            <c:choose>
-					                <c:when test="${boardItem.board_replyStatus}">
-					                    <td style="color: green;">답변완료</td>
-					                </c:when>
-					                <c:otherwise>
-					                    <td style="color: #DE3030;">답변대기</td>
-					                </c:otherwise>
-					            </c:choose>            
+					            <td>${memberItem.email}</td>
+					            <td><a href="#" class="nameLink" id="nameLink" data-boardNum="${memberItem.member_num}">${memberItem.username}</a></td>
+					            <td>${memberItem.birthdate}</td>
+					            <td>${memberItem.phone}</td>
+					            <td><fmt:formatDate value="${memberItem.registration_date}" pattern="yyyy-MM-dd HH:mm"/></td>
 					        </tr>                    
 					    </c:forEach> 
 					</c:if>
@@ -184,7 +172,7 @@
 	   
 <style>
 .modal-dialog {
-    max-width: 60%;
+    max-width: 40%;
     max-height: 100%; 
     top: 20%;
 }
@@ -203,10 +191,10 @@
 
 .modal-body form textarea {
     flex: 1;
-    width: 40%;
+    width: auto;
     height: 120px;
     resize: none;
-    margin-left: 10px;
+    margin-left: 10px; /* 기존 내용과 간격 조정 */
 }
 
 P {
@@ -215,6 +203,7 @@ color: #000000;
 </style>
 
 <script>
+
 $('#menuToggle').on('click', function(event) {
 	var windowWidth = $(window).width();   		 
 	if (windowWidth<1010) { 
@@ -228,9 +217,10 @@ $('#menuToggle').on('click', function(event) {
 		$('body').toggleClass('open');
 		$('#left-panel').removeClass('open-menu');  
 	} 
+		 
 }); 
-</script>
 
+</script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
