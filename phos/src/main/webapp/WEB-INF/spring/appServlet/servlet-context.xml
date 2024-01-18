@@ -24,6 +24,7 @@
 	<context:component-scan base-package="com.phos.controller" />
 	<context:component-scan base-package="com.phos.service" />
 	<context:component-scan base-package="validator"/>
-	
+	<context:component-scan base-package="com.phos.security"/>
+	<context:component-scan base-package="com.phos.config"/>
 	
 </beans:beans>

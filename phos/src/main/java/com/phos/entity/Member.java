@@ -33,8 +33,28 @@ public class Member {
     
     @NotNull
     private Date birthdate;
-    private Date registration_date;
+    private Timestamp  registration_date;
     
     private Role role;
+    
+
+	public void setMemberNum(int memberNum) {
+	    this.member_num = memberNum;
+	}
+
+
+	public int getMembernum() {
+		return member_num;
+	}
+	
+	public void setRegistrationDate(Timestamp  registration_date) {
+        this.registration_date = registration_date;
+    }
+
+    public Timestamp  getRegistrationDate() {
+        return registration_date;
+    }
+
 }
+
 

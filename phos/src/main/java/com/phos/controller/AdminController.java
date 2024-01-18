@@ -37,28 +37,18 @@ public class AdminController {
 	}
 	
 	@GetMapping("/board")
-	public String board(PagingVO pagingInfo
-			,Model model
-			,@RequestParam(value="nowPage", required=false)String nowPage
-			,@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
-		
-		int total = boardService.countAll();
-		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "10";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (cntPerPage == null) { 
-			cntPerPage = "10";
-		}
-		
-		pagingInfo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		model.addAttribute("paging", pagingInfo);
-		
-		addBoardListToModel(model, pagingInfo);
+	public String board(@ModelAttribute("pagingInfo") PagingVO pagingInfo, Model model,
+	                    @RequestParam(value = "nowPage", defaultValue = "1") int nowPage,
+	                    @RequestParam(value = "cntPerPage", defaultValue = "10") int cntPerPage) {
+
+	    int total = boardService.countAll();
+	    pagingInfo = new PagingVO(total, nowPage, cntPerPage);
+
+	    model.addAttribute("paging", pagingInfo);
+	    addBoardListToModel(model, pagingInfo);
 	    addReplyStatusToModel(model);
 
-		return "admin/board";
+	    return "admin/board";
 	}
 	
 	@GetMapping("/detail")
@@ -78,9 +68,9 @@ public class AdminController {
 	
 	@GetMapping("/member")
 	public String member(PagingVO pagingInfo
-			,Model model
-			,@RequestParam(value="nowPage", required=false)String nowPage
-			,@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+						,Model model
+						,@RequestParam(value="nowPage", required=false)String nowPage
+						,@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
 		
 		int total = memberService.countAll();
 		
@@ -110,6 +100,7 @@ public class AdminController {
 	private void addReplyStatusToModel(Model model) {
 	    int replyStatusTrue = boardService.countReplyStatusTrue();
 	    int replyStatusFalse = boardService.countReplyStatusFalse();
+	    
 	    model.addAttribute("NumberOfReplyStatusTrue", replyStatusTrue);
 	    model.addAttribute("NumberOfReplyStatusFalse", replyStatusFalse);
 	}

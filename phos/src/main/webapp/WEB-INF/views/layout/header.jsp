@@ -86,6 +86,9 @@
 	        <div class="dropdown-menu" aria-labelledby="programDropdown">
 	          <a class="dropdown-item" href="/phos/member/logout">로그아웃</a>
 	          <a class="dropdown-item" href="/phos/member/myPage">마이페이지</a>
+	          <sec:authorize access="hasRole('ADMIN')">
+	          <a class="dropdown-item" href="/phos/admin/index">관리자페이지</a>
+	          </sec:authorize>
 	        </div>
 		   </li>
 	   </c:if>

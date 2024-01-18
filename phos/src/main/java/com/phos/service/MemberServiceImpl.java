@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 import mail.MailHandler;
 import validator.memberValidator;
 
-import com.phos.config.WebSecurityConfig;
+import com.phos.config.SecurityConfig;
 
 @Service
 @ComponentScan("com.phos.config")
@@ -39,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
 		private final MemberMapper memberMapper;
 		private final JavaMailSender mailSender;
 		
-		WebSecurityConfig webSecurityConfig = new WebSecurityConfig();
+		SecurityConfig webSecurityConfig = new SecurityConfig();
 		
 		
 	    public boolean isEmailDuplicated(String email){

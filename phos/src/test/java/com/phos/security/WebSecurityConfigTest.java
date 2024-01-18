@@ -3,17 +3,34 @@ package com.phos.security;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.MockMvc;
 
-import com.phos.config.WebSecurityConfig;
+import com.phos.config.SecurityConfig;
+import com.phos.controller.MemberController;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.*;
 
+import org.aspectj.lang.annotation.Before;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 public class WebSecurityConfigTest {
 	
-	WebSecurityConfig webSecurityConfig = new WebSecurityConfig();
+	@Autowired
+	private MockMvc mockMvc;
+	
+	@Autowired
+	private MemberController memberController;
+	
+	SecurityConfig webSecurityConfig = new SecurityConfig();
 
+	@Before(value = "accessLoginPage")
+	public void setup() {
+		if (memberController == null) {
+	        System.out.println("널");
+	    }
+	    mockMvc = MockMvcBuilders.standaloneSetup(memberController).build();
+	}
 	
 	@Test
     @DisplayName("패스워드 암호화 테스트")
@@ -59,8 +76,6 @@ public class WebSecurityConfigTest {
         // then
         assertThat(check).isEqualTo(false);
     }
-	
-	
-	
+
 
 }

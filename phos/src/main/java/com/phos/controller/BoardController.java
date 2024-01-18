@@ -32,11 +32,10 @@ public class BoardController {
 	private final BoardService boardService;
 
 	@GetMapping("/list")
-	public String list(PagingVO vo
-			,Model model
-			,@RequestParam(value="nowPage", required=false)String nowPage
-			,@RequestParam(value="cntPerPage", required=false)String cntPerPage
-			,HttpSession session) {
+	public String list(PagingVO vo ,Model model
+					  ,@RequestParam(value = "nowPage", defaultValue = "1")int nowPage
+					  ,@RequestParam(value="cntPerPage", defaultValue = "7")int cntPerPage
+					  ,HttpSession session) {
 		
 		Member mvo = (Member) session.getAttribute("mvo");
 		if (mvo == null) {
@@ -45,15 +44,7 @@ public class BoardController {
 	    }
 		
 		int total = boardService.countBoard(mvo.getEmail());
-		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "7";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (cntPerPage == null) { 
-			cntPerPage = "7";
-		}
-		vo = new PagingVO(mvo.getEmail(), total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		vo = new PagingVO(mvo.getEmail(), total, nowPage, cntPerPage);
 		model.addAttribute("paging", vo);
 		
 		List<Board> boardList = boardService.selectBoard(vo);
@@ -73,10 +64,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("detail")
-	public String detail(
-			@RequestParam("no") int boardNum
-			,Model model
-			,HttpSession session) {
+	public String detail(@RequestParam("no") int boardNum
+						 ,Model model
+						 ,HttpSession session) {
 		
 		Board data = boardService.getDetail(boardNum);
 		Member mvo = (Member) session.getAttribute("mvo");
